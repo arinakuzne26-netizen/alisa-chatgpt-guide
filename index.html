@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT внутри колонки: Алиса наконец понимает</title>
+<meta name="ms-section" content="life">
+<meta name="ms-tag" content="Гайд">
+<meta name="ms-title" content="ChatGPT внутри колонки: <i>Алиса наконец понимает</i>">
+<meta name="ms-desc" content="Пошагово: как подключить нейросеть к Яндекс Станции через свой приватный навык и говорить с ней вслух.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --accent: #710C04; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 48px; border-bottom: 1px solid #f0f0f0;
+  position: sticky; top: 0; background: #fff; z-index: 100;
+}
+.nav__logo { text-decoration: none; display: flex; align-items: center; }
+.nav__logo img { height: 30px; width: auto; }
+.nav__logo-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #888; letter-spacing: 0.5px;
+}
+
+.container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+.hero { padding: 60px 0 48px; }
+.badge {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  color: var(--accent); border: 1px solid var(--accent);
+  padding: 5px 16px; margin-bottom: 20px;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 38px; font-weight: 700; line-height: 1.25; margin-bottom: 16px;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero__desc { font-size: 18px; color: #666; line-height: 1.7; }
+.hero__meta { font-size: 14px; color: #999; margin-top: 16px; letter-spacing: 1px; }
+
+.intro-bold {
+  font-size: 18px; font-weight: 700; line-height: 1.65;
+  color: #1a1a1a; padding: 40px 0 16px;
+}
+.intro-text { font-size: 17px; color: #444; line-height: 1.75; padding-bottom: 16px; }
+
+.section-heading {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 28px; font-weight: 700; line-height: 1.3;
+  padding: 48px 0 20px; border-top: 1px solid #e8e8e8;
+  display: flex; align-items: baseline; gap: 12px;
+}
+.section-heading span.num { color: var(--accent); }
+.section-heading em { font-style: italic; color: var(--accent); }
+
+.check {
+  margin-left: auto; flex-shrink: 0; align-self: center;
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: #aaa; background: #fff; border: 1px solid #e0e0e0;
+  padding: 7px 14px; cursor: pointer; line-height: 1;
+}
+.check:hover { border-color: #bbb; color: #777; }
+.check[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}
+
+.progress {
+  background: #f5f5f5; padding: 16px 20px; margin: 0 0 8px;
+  font-size: 14px; color: #555; display: flex; align-items: center; gap: 14px;
+}
+.progress__bar { flex: 1; height: 4px; background: #e2e2e2; position: relative; }
+.progress__fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--accent); transition: width .2s; }
+.progress__reset { background: none; border: none; color: #999; font-size: 13px; cursor: pointer; font-family: inherit; text-decoration: underline; padding: 0; }
+.progress__reset:hover { color: var(--accent); }
+
+.highlight {
+  background: #f5f5f5; padding: 20px 24px; margin: 24px 0;
+  font-size: 16px; line-height: 1.75; color: #444;
+}
+.highlight code, .text code {
+  font-family: 'Inter', sans-serif; font-weight: 600; color: #1a1a1a;
+  background: #ebebeb; padding: 1px 6px; font-size: 15px; word-break: break-all;
+}
+
+.text { font-size: 17px; color: #444; line-height: 1.75; margin-bottom: 16px; }
+.text strong { color: #1a1a1a; }
+.link { color: var(--accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
+
+.guide-list { list-style: none; margin: 16px 0 24px; }
+.guide-list li {
+  font-size: 16px; line-height: 1.75; color: #444;
+  padding: 8px 0 8px 20px; position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+.guide-list li:last-child { border-bottom: none; }
+.guide-list li::before {
+  content: ''; position: absolute; left: 0; top: 16px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+.guide-list li strong { color: #1a1a1a; }
+
+.prompt-box { background: #f5f5f5; padding: 36px; margin: 32px 0; }
+.prompt-box__title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 20px; font-weight: 700; color: var(--accent); margin-bottom: 6px;
+}
+.prompt-box__subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
+.prompt-box__text { font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
+
+.figure { margin: 28px 0 8px; }
+.figure svg { display: block; width: 100%; height: auto; border: 1px solid #e8e8e8; background: #fff; }
+.figure figcaption { font-size: 13px; color: #999; margin-top: 8px; line-height: 1.6; }
+
+.scenario-card {
+  border: 1px solid #e8e8e8; padding: 32px; margin: 24px 0; background: #f9f9f9;
+}
+.scenario-card__num {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-style: italic; font-size: 14px; color: var(--accent);
+  letter-spacing: 1px; margin-bottom: 8px;
+}
+.scenario-card__title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 20px; font-weight: 700; line-height: 1.4; margin-bottom: 16px;
+}
+.scenario-card__tip {
+  background: #f0f0f0; padding: 14px 18px; margin-top: 16px;
+  font-size: 14px; color: #555; line-height: 1.65;
+}
+.scenario-card__tip strong { color: var(--accent); }
+
+.scheme {
+  background: #f5f5f5; padding: 24px; margin: 32px 0 0;
+  font-size: 15px; line-height: 1.9; color: #1a1a1a; font-weight: 500;
+}
+.scheme__label {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 14px; font-style: italic; color: var(--accent);
+  letter-spacing: 1px; margin-bottom: 8px;
+}
+
+.footer-note {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 18px; font-style: italic; color: #444;
+  text-align: center; padding: 48px 24px 0;
+}
+.footer-note em { color: var(--accent); }
+
+.cta { background: #f5f5f5; text-align: center; padding: 40px 24px; margin: 56px 0 0; }
+.cta__text { font-size: 17px; color: #1a1a1a; line-height: 1.7; margin-bottom: 8px; }
+.cta__sub { font-size: 15px; color: #666; margin-bottom: 0; }
+.cta__link { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
+
+.footer {
+  text-align: center; padding: 64px 24px;
+  border-top: 1px solid #e8e8e8; margin-top: 64px;
+  color: #999; font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .nav { padding: 16px 20px; }
+  .hero h1 { font-size: 28px; }
+  .section-heading { font-size: 22px; flex-wrap: wrap; gap: 8px; }
+  .check { margin-left: 0; }
+  .scenario-card { padding: 20px; }
+  .prompt-box { padding: 24px; }
+  .scheme { padding: 20px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav__logo" href="#"><img src="logo-ms.png" alt="MS"></a>
+  <span class="nav__logo-name">maysoulme</span>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <span class="badge">Гайд</span>
+    <h1>ChatGPT внутри колонки: <em>Алиса наконец понимает</em></h1>
+    <p class="hero__desc">Я проговариваю идеи для reels вслух, и колонка сразу разбирает их со мной, вместо своего вечного «я вас не поняла».</p>
+    <p class="hero__meta">6 шагов · ~40 минут · нужна карта и немного терпения</p>
+  </section>
+
+  <p class="intro-bold">Я просто говорю «Алиса, запусти навык», и дальше со мной разговаривает уже не колонка, а нормальная нейросеть</p>
+  <p class="intro-text">Работает это так: вы заводите свой собственный навык в Яндексе, он у вас приватный и доступен только вам, а внутри к нему подцеплена нейросеть. Алиса в этой схеме становится просто микрофоном, который передаёт ваши слова дальше и зачитывает ответ вслух. Программировать ничего не придётся, весь код уже написан и лежит в открытом доступе, вам нужно только нажать несколько кнопок и вставить ключи в нужные поля.</p>
+  <p class="intro-text">Самое приятное началось, когда я перестала доставать телефон: идея для ролика приходит на кухне, я проговариваю её вслух, и она сразу разбирается со мной, пока я мою посуду.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: колонка, Алиса, ваш навык, ваше приложение, нейросеть">
+      <defs>
+        <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#710C04"/>
+        </marker>
+      </defs>
+      <g font-family="Inter, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">
+        <rect x="8" y="45" width="118" height="58" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="67" y="70">Вы говорите</text><text x="67" y="88" fill="#777">в колонку</text>
+
+        <rect x="160" y="45" width="118" height="58" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="219" y="70">Алиса</text><text x="219" y="88" fill="#777">слышит</text>
+
+        <rect x="312" y="45" width="118" height="58" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="371" y="70">Ваш навык</text><text x="371" y="88" fill="#777">в Диалогах</text>
+
+        <rect x="464" y="45" width="118" height="58" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="523" y="70">Приложение</text><text x="523" y="88" fill="#777">на хостинге</text>
+
+        <rect x="616" y="45" width="116" height="58" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="674" y="70">Нейросеть</text><text x="674" y="88" fill="#777">отвечает</text>
+
+        <line x1="130" y1="74" x2="154" y2="74" stroke="#710C04" marker-end="url(#ar)"/>
+        <line x1="282" y1="74" x2="306" y2="74" stroke="#710C04" marker-end="url(#ar)"/>
+        <line x1="434" y1="74" x2="458" y2="74" stroke="#710C04" marker-end="url(#ar)"/>
+        <line x1="586" y1="74" x2="610" y2="74" stroke="#710C04" marker-end="url(#ar)"/>
+
+        <text x="371" y="128" font-size="11" fill="#999">красным — то, что вы настроите своими руками</text>
+      </g>
+    </svg>
+    <figcaption>Схема целиком: Алиса тут работает микрофоном, а думает за неё нейросеть на вашем хостинге.</figcaption>
+  </figure>
+
+  <div class="highlight">
+    Сразу про деньги, чтобы без сюрпризов: ключ к нейросети стоит 1 ₽ в месяц плюс расход за сами ответы, а хостинг для приложения начинается примерно от 510 ₽ в месяц. Оплачивается всё российской картой, VPN не нужен.
+  </div>
+
+  <div class="progress">
+    <span id="pcount">Готово 0 из 6</span>
+    <span class="progress__bar"><span class="progress__fill" id="pfill"></span></span>
+    <button class="progress__reset" id="preset" type="button">сбросить</button>
+  </div>
+  <p class="text" style="font-size:14px;color:#999">Отмечайте шаги кнопкой «готово» справа от заголовка, прогресс сохранится в браузере и не потеряется, если вы закроете вкладку.</p>
+
+  <h2 class="section-heading" data-step="1"><span class="num">01.</span><span>Заводим <em>мозги</em></span><button class="check" type="button" aria-pressed="false">готово</button></h2>
+  <p class="text">Сначала нужен доступ к самой нейросети. Удобнее всего взять его через российский шлюз, потому что тогда подойдёт обычная карта и не понадобится никаких обходных путей.</p>
+  <p class="text">Зарегистрируйтесь в <a class="link" href="https://timeweb.cloud/">Timeweb Cloud</a> и пополните баланс, дальше зайдите в раздел <strong>ИИ-сервисы</strong> → <strong>AI Gateway</strong> и нажмите <strong>Создать ключ</strong>. Ключ скопируйте и сохраните, он понадобится через пару шагов.</p>
+  <div class="scenario-card__tip"><strong>Совет:</strong> там же во вкладке <strong>API-ключи</strong> → <strong>Управление</strong> есть <strong>Установить лимиты</strong>, поставьте себе потолок на месяц сразу, чтобы разговорчивая колонка не удивила вас счётом.</div>
+
+  <h2 class="section-heading" data-step="2"><span class="num">02.</span><span>Поднимаем <em>приложение</em></span><button class="check" type="button" aria-pressed="false">готово</button></h2>
+  <p class="text">Это та самая прослойка между Алисой и нейросетью, и писать её не нужно, потому что готовый код уже лежит на GitHub и подключается ссылкой.</p>
+  <p class="text">В том же Timeweb откройте <strong>App Platform</strong> → <strong>Создать</strong> → <strong>Подключите git-репозиторий по URL</strong> и вставьте адрес <code>https://github.com/ituzov/ituzovlab-alice.git</code>, дальше выберите Node.js и самую простую конфигурацию.</p>
+  <p class="text">В <strong>Расширенных настройках</strong> укажите путь проверки <code>/health</code> и добавьте переменные <code>API_KEY</code> (это ваш ключ из первого шага), <code>BASE_URL</code> и <code>MODEL</code>. Когда приложение развернётся, на вкладке <strong>Дашборд</strong> появится его адрес, скопируйте его тоже.</p>
+
+  <h2 class="section-heading" data-step="3"><span class="num">03.</span><span>Создаём <em>навык</em></span><button class="check" type="button" aria-pressed="false">готово</button></h2>
+  <p class="text">Теперь идём к Яндексу. Откройте <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a> под тем же аккаунтом, к которому привязана ваша колонка, иначе навык до неё просто не доедет.</p>
+  <p class="text">Нажмите <strong>Создать диалог</strong> и выберите <strong>Навык в Алисе</strong>, заполните название, описание и пару примеров фраз, а тип доступа поставьте <strong>Приватный</strong>, чтобы навык остался только вашим.</p>
+  <div class="highlight">
+    Про активационное имя, то есть то, что вы произносите вслух: оно должно быть из двух–четырёх слов, и в нём нельзя использовать «Алиса», «Яндекс», «Станция» и слова-команды вроде «запусти» или «покажи». Берите что-нибудь своё и простое, например «мой ассистент».
+  </div>
+
+  <h2 class="section-heading" data-step="4"><span class="num">04.</span><span>Связываем <em>одно с другим</em></span><button class="check" type="button" aria-pressed="false">готово</button></h2>
+  <p class="text">Остался самый технический момент, и он занимает минуту. В настройках навыка найдите поле <strong>Webhook URL</strong> и вставьте туда адрес вашего приложения из второго шага, обязательно целиком и обязательно с <code>https://</code> в начале, иначе Яндекс его не примет.</p>
+  <p class="text">Потом вернитесь в Timeweb, в <strong>Настройки</strong> → <strong>Настройки деплоя</strong> добавьте переменную <code>ALICE_SKILL_ID</code> со значением, которое лежит у навыка на вкладке <strong>Тестирование</strong>, и сохраните. Так приложение будет понимать, что запросы приходят именно от вашего навыка.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: что куда вставляется">
+      <g font-family="Inter, sans-serif" font-size="12.5" fill="#1a1a1a">
+        <text x="20" y="28" font-weight="700" font-size="13">ЧТО ОТКУДА БЕРЁМ</text>
+        <text x="420" y="28" font-weight="700" font-size="13">КУДА ВСТАВЛЯЕМ</text>
+
+        <rect x="20" y="42" width="300" height="38" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="34" y="66">Ключ из AI Gateway</text>
+        <rect x="420" y="42" width="300" height="38" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="434" y="66">Переменная API_KEY в приложении</text>
+        <line x1="326" y1="61" x2="414" y2="61" stroke="#710C04" stroke-dasharray="4 3"/>
+
+        <rect x="20" y="92" width="300" height="38" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="34" y="116">Адрес приложения с Дашборда</text>
+        <rect x="420" y="92" width="300" height="38" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="434" y="116">Поле Webhook URL у навыка</text>
+        <line x1="326" y1="111" x2="414" y2="111" stroke="#710C04" stroke-dasharray="4 3"/>
+
+        <rect x="20" y="142" width="300" height="38" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="34" y="166">ID навыка с вкладки «Тестирование»</text>
+        <rect x="420" y="142" width="300" height="38" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="434" y="166">Переменная ALICE_SKILL_ID</text>
+        <line x1="326" y1="161" x2="414" y2="161" stroke="#710C04" stroke-dasharray="4 3"/>
+      </g>
+    </svg>
+    <figcaption>Три значения, которые надо переложить из одного окна в другое. Больше никакой техники в этой схеме нет.</figcaption>
+  </figure>
+
+  <h2 class="section-heading" data-step="5"><span class="num">05.</span><span>Объясняем, <em>кто вы</em></span><button class="check" type="button" aria-pressed="false">готово</button></h2>
+  <p class="text">Вот тут важный момент, который многие пропускают. Навык не подтягивает переписку из вашего личного ChatGPT и ничего про вас заранее не знает, поэтому контекст вы задаёте ему сами, один раз, и дальше он отвечает уже как ваш человек.</p>
+  <p class="text">Добавьте в настройки приложения инструкцию про себя, прямо текстом, своими словами.</p>
+  <div class="prompt-box">
+    <div class="prompt-box__title">Инструкция про себя</div>
+    <div class="prompt-box__subtitle">Подставьте своё и сохраните в настройках</div>
+    <p class="prompt-box__text">«Ты мой личный ассистент. Я веду блог про [тема], моя аудитория — [кто это], я пишу [как: тепло, на „вы", с самоиронией]. Отвечай коротко, вслух это должно звучать естественно, без списков и заголовков. Если я проговариваю идею для ролика, сразу предлагай хук и раскладывай её по шагам».</p>
+  </div>
+  <div class="scenario-card__tip"><strong>Почему важно:</strong> колонка зачитывает ответ голосом, и длинные простыни с пунктами звучат ужасно, так что просьба отвечать коротко тут работает сильнее всего остального.</div>
+
+  <h2 class="section-heading" data-step="6"><span class="num">06.</span><span>Публикуем и <em>зовём вслух</em></span><button class="check" type="button" aria-pressed="false">готово</button></h2>
+  <p class="text">Зайдите на вкладку <strong>Тестирование</strong> и проверьте, что навык отвечает, там же подсветятся незаполненные поля, если вы что-то пропустили. Дальше нажимайте <strong>Опубликовать</strong>: приватный навык проходит быструю автопроверку, там смотрят только активационное имя и иконку.</p>
+  <p class="text">После этого подходите к колонке и говорите «Алиса, запусти навык» и своё имя навыка, а дальше просто разговаривайте. Выйти можно словом «выход», и Алиса вернётся к обычной себе.</p>
+
+  <div class="scheme">
+    <div class="scheme__label">Короткая схема</div>
+    Ключ в AI Gateway → приложение из готового репозитория → навык в Диалогах → Webhook URL → инструкция про себя → <strong>Опубликовать</strong> → «Алиса, запусти навык…»
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-card__num">Если что-то пошло не так</div>
+    <div class="scenario-card__title">Две поломки, которые случаются почти у всех</div>
+    <p class="text">Колонка отвечает «такого навыка нет» — значит, навык ещё не опубликован или вы зовёте его не тем именем, которое записано в поле активационного имени, и проще всего открыть настройки и прочитать его оттуда дословно.</p>
+    <p class="text" style="margin-bottom:0">Алиса говорит «навык не отвечает» — обычно это про адрес в <strong>Webhook URL</strong>, там либо потерялся <code>https://</code>, либо приложение на хостинге заснуло и его надо перезапустить 🤍</p>
+  </div>
+
+  <p class="footer-note">Раньше я записывала идеи в заметки. Теперь <em>просто говорю вслух</em>.</p>
+
+  <div class="cta">
+    <p class="cta__text">Если подключите, напишите потом, о чём первом с ней заговорили 🤍</p>
+    <p class="cta__text cta__sub">Такие разборы я выкладываю у себя в канале — <a class="cta__link" href="https://t.me/maysoulme">@maysoulme</a></p>
+  </div>
+
+  <div class="footer">
+    © 2026 · maysoulme
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'ms-alisa-steps';
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.check'));
+  var total = buttons.length;
+  var countEl = document.getElementById('pcount');
+  var fillEl = document.getElementById('pfill');
+  var resetEl = document.getElementById('preset');
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+  function save(state) {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function render(state) {
+    var done = 0;
+    buttons.forEach(function (btn) {
+      var step = btn.parentNode.getAttribute('data-step');
+      var on = !!state[step];
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? 'готово ✓' : 'готово';
+      if (on) done++;
+    });
+    countEl.textContent = 'Готово ' + done + ' из ' + total;
+    fillEl.style.width = (total ? (done / total) * 100 : 0) + '%';
+  }
+
+  var state = load();
+  render(state);
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var step = btn.parentNode.getAttribute('data-step');
+      state[step] = !state[step];
+      save(state);
+      render(state);
+    });
+  });
+
+  resetEl.addEventListener('click', function () {
+    state = {};
+    save(state);
+    render(state);
+  });
+})();
+</script>
+
+</body>
+</html>
