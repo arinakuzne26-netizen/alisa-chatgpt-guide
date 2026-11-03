@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Алиса перестала говорить «я вас не поняла»</title>
+<title>Как подключить ChatGPT к Алисе</title>
 <meta name="ms-section" content="life">
 <meta name="ms-tag" content="Гайд">
-<meta name="ms-title" content="Алиса перестала говорить <i>«я вас не поняла»</i>">
-<meta name="ms-desc" content="Умный режим в колонке включается одной фразой. А если нужен именно ChatGPT, внизу короткая инструкция.">
+<meta name="ms-title" content="Как подключить <i>ChatGPT к Алисе</i>">
+<meta name="ms-desc" content="Короткая инструкция: одна фраза для умного режима и пять шагов, если нужен именно ChatGPT.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
 <style>
@@ -32,9 +32,9 @@ body {
   font-style: italic; color: #888; letter-spacing: 0.5px;
 }
 
-.container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
 
-.hero { padding: 60px 0 48px; }
+.hero { padding: 56px 0 36px; }
 .badge {
   display: inline-block; font-size: 11px; font-weight: 600;
   color: var(--accent); border: 1px solid var(--accent);
@@ -43,51 +43,44 @@ body {
 }
 .hero h1 {
   font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 38px; font-weight: 700; line-height: 1.25; margin-bottom: 16px;
+  font-size: 36px; font-weight: 700; line-height: 1.25; margin-bottom: 14px;
 }
 .hero h1 em { font-style: italic; color: var(--accent); }
 .hero__desc { font-size: 18px; color: #666; line-height: 1.7; }
-.hero__meta { font-size: 14px; color: #999; margin-top: 16px; letter-spacing: 1px; }
-
-.intro-bold {
-  font-size: 18px; font-weight: 700; line-height: 1.65;
-  color: #1a1a1a; padding: 40px 0 16px;
-}
-.intro-text { font-size: 17px; color: #444; line-height: 1.75; padding-bottom: 16px; }
 
 .part {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px; font-style: italic; color: var(--accent);
   letter-spacing: 2px; text-transform: uppercase;
-  padding: 56px 0 0; border-top: 1px solid #e8e8e8; margin-top: 24px;
+  padding: 44px 0 0; border-top: 1px solid #e8e8e8;
 }
 .part-title {
   font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 30px; font-weight: 700; line-height: 1.3; padding: 8px 0 20px;
+  font-size: 27px; font-weight: 700; line-height: 1.3; padding: 8px 0 16px;
 }
 .part-title em { font-style: italic; color: var(--accent); }
 
-.say { background: #f5f5f5; padding: 36px 24px; margin: 28px 0; text-align: center; }
-.say__label { font-size: 12px; color: #999; letter-spacing: 2px; margin-bottom: 14px; }
+.say { background: #f5f5f5; padding: 32px 24px; margin: 20px 0; text-align: center; }
+.say__label { font-size: 12px; color: #999; letter-spacing: 2px; margin-bottom: 12px; }
 .say__phrase {
   font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1.35;
+  font-size: 27px; font-weight: 700; color: var(--accent); line-height: 1.35;
 }
 
-.steps { list-style: none; counter-reset: s; margin: 8px 0 24px; }
+.steps { list-style: none; margin: 4px 0 20px; }
 .steps > li {
   display: flex; gap: 16px; align-items: flex-start;
-  padding: 18px 0; border-bottom: 1px solid #f0f0f0;
+  padding: 16px 0; border-bottom: 1px solid #f0f0f0;
 }
 .steps > li:first-child { border-top: 1px solid #f0f0f0; }
 .steps__num {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-style: italic; font-size: 15px; color: var(--accent);
-  min-width: 26px; flex-shrink: 0; padding-top: 2px;
+  min-width: 24px; flex-shrink: 0; padding-top: 2px;
 }
 .steps__body { flex: 1; }
 .steps__title { font-size: 17px; font-weight: 600; color: #1a1a1a; line-height: 1.5; }
-.steps__path { font-size: 15px; color: #666; line-height: 1.65; margin-top: 2px; }
+.steps__path { font-size: 15px; color: #666; line-height: 1.6; margin-top: 2px; }
 .steps__path strong { color: #1a1a1a; font-weight: 600; }
 .check {
   flex-shrink: 0; align-self: center;
@@ -100,7 +93,7 @@ body {
 .check[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 .progress {
-  background: #f5f5f5; padding: 16px 20px; margin: 24px 0 0;
+  background: #f5f5f5; padding: 14px 18px; margin: 0 0 24px;
   font-size: 14px; color: #555; display: flex; align-items: center; gap: 14px;
 }
 .progress__bar { flex: 1; height: 4px; background: #e2e2e2; position: relative; }
@@ -109,83 +102,54 @@ body {
 .progress__reset:hover { color: var(--accent); }
 
 .highlight {
-  background: #f5f5f5; padding: 20px 24px; margin: 24px 0;
-  font-size: 16px; line-height: 1.75; color: #444;
+  background: #f5f5f5; padding: 18px 22px; margin: 20px 0;
+  font-size: 16px; line-height: 1.7; color: #444;
 }
 .highlight code, .text code, .steps__path code {
   font-family: 'Inter', sans-serif; font-weight: 600; color: #1a1a1a;
   background: #ebebeb; padding: 1px 6px; font-size: 14.5px; word-break: break-all;
 }
 
-.text { font-size: 17px; color: #444; line-height: 1.75; margin-bottom: 16px; }
+.text { font-size: 17px; color: #444; line-height: 1.75; margin-bottom: 14px; }
 .text strong { color: #1a1a1a; }
 .link { color: var(--accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
 
-.guide-list { list-style: none; margin: 16px 0 24px; }
-.guide-list li {
-  font-size: 16px; line-height: 1.75; color: #444;
-  padding: 10px 0 10px 20px; position: relative; border-bottom: 1px solid #f0f0f0;
-}
-.guide-list li:last-child { border-bottom: none; }
-.guide-list li::before {
-  content: ''; position: absolute; left: 0; top: 19px;
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-}
-
-.prompt-box { background: #f5f5f5; padding: 36px; margin: 28px 0; }
+.prompt-box { background: #f5f5f5; padding: 30px; margin: 24px 0; }
 .prompt-box__title {
   font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 20px; font-weight: 700; color: var(--accent); margin-bottom: 6px;
+  font-size: 19px; font-weight: 700; color: var(--accent); margin-bottom: 4px;
 }
-.prompt-box__subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
+.prompt-box__subtitle { font-size: 13px; color: #888; margin-bottom: 16px; }
 .prompt-box__text { font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
 
-.figure { margin: 28px 0 8px; }
+.figure { margin: 24px 0 8px; }
 .figure svg { display: block; width: 100%; height: auto; border: 1px solid #e8e8e8; background: #fff; }
 .figure figcaption { font-size: 13px; color: #999; margin-top: 8px; line-height: 1.6; }
 
-.scenario-card { border: 1px solid #e8e8e8; padding: 32px; margin: 24px 0; background: #f9f9f9; }
-.scenario-card__num {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-style: italic; font-size: 14px; color: var(--accent);
-  letter-spacing: 1px; margin-bottom: 8px;
-}
-.scenario-card__title {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 20px; font-weight: 700; line-height: 1.4; margin-bottom: 16px;
-}
 .scenario-card__tip {
-  background: #f0f0f0; padding: 14px 18px; margin-top: 16px;
-  font-size: 14px; color: #555; line-height: 1.65;
+  background: #f0f0f0; padding: 14px 18px; margin: 16px 0;
+  font-size: 14.5px; color: #555; line-height: 1.65;
 }
 .scenario-card__tip strong { color: var(--accent); }
 
-.footer-note {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 18px; font-style: italic; color: #444;
-  text-align: center; padding: 48px 24px 0;
-}
-.footer-note em { color: var(--accent); }
-
-.cta { background: #f5f5f5; text-align: center; padding: 40px 24px; margin: 56px 0 0; }
+.cta { background: #f5f5f5; text-align: center; padding: 36px 24px; margin: 48px 0 0; }
 .cta__text { font-size: 17px; color: #1a1a1a; line-height: 1.7; margin-bottom: 8px; }
 .cta__sub { font-size: 15px; color: #666; margin-bottom: 0; }
 .cta__link { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
 
 .footer {
-  text-align: center; padding: 64px 24px;
-  border-top: 1px solid #e8e8e8; margin-top: 64px; color: #999; font-size: 14px;
+  text-align: center; padding: 56px 24px;
+  border-top: 1px solid #e8e8e8; margin-top: 56px; color: #999; font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {
   .nav { padding: 16px 20px; }
-  .hero h1 { font-size: 27px; }
-  .part-title { font-size: 23px; }
-  .say__phrase { font-size: 21px; }
+  .hero h1 { font-size: 26px; }
+  .part-title { font-size: 22px; }
+  .say__phrase { font-size: 20px; }
   .steps > li { flex-wrap: wrap; }
-  .check { margin-left: 42px; }
-  .scenario-card { padding: 20px; }
-  .prompt-box { padding: 24px; }
+  .check { margin-left: 40px; }
+  .prompt-box { padding: 22px; }
 }
 </style>
 </head>
@@ -198,109 +162,94 @@ body {
 
 <div class="container">
   <section class="hero">
-    <span class="badge">Гайд</span>
-    <h1>Алиса перестала говорить <em>«я вас не поняла»</em></h1>
-    <p class="hero__desc">Умный режим в колонке включается одной фразой, и я про него два года не знала. Теперь проговариваю идеи для reels вслух, пока мою посуду.</p>
-    <p class="hero__meta">Одна фраза · бесплатно · ничего настраивать не нужно</p>
+    <span class="badge">Инструкция</span>
+    <h1>Как подключить <em>ChatGPT к Алисе</em></h1>
+    <p class="hero__desc">Два варианта: быстрый на одну фразу и настоящий, если нужен именно ChatGPT.</p>
   </section>
 
-  <p class="intro-bold">Я два года ругалась на колонку и не знала, что она давно умеет думать нормально</p>
-  <p class="intro-text">Оказалось, у Алисы просто есть второй режим, и он по умолчанию молчит, пока его не позовёшь. Включается он одной фразой, никаких настроек и подписок для этого не нужно, и работает прямо сейчас на вашей Станции.</p>
+  <div class="part">Вариант 1 · одна фраза</div>
+  <h2 class="part-title">Умный режим, <em>который уже есть</em></h2>
+  <p class="text">Скажите колонке эту фразу, и Алиса переключится в режим нейросети. Настраивать нечего, платить не нужно.</p>
 
   <div class="say">
     <div class="say__label">СКАЖИТЕ КОЛОНКЕ</div>
     <div class="say__phrase">«Алиса, давай&nbsp;придумаем»</div>
   </div>
 
-  <p class="text">И всё, дальше она отвечает уже как нормальная нейросеть: разберёт идею, напишет текст, поможет подумать вслух. Чтобы вернуть обычную Алису, скажите «Алиса, хватит».</p>
-  <p class="text">Если вдруг колонка не переключилась, попробуйте «Алиса, включи нейросеть», потому что Яндекс иногда меняет формулировку, а сам режим при этом никуда не девается.</p>
+  <p class="text">Вернуть обычную Алису — «Алиса, хватит». Если не переключилась, попробуйте «Алиса, включи нейросеть».</p>
+  <div class="scenario-card__tip"><strong>Важно:</strong> думает тут нейросеть Яндекса, а не ChatGPT, и про вас она ничего не знает.</div>
 
-  <div class="part">Что у неё спрашивать</div>
-  <h2 class="part-title">Четыре фразы, <em>с которых я начала</em></h2>
-  <p class="text">Я поначалу тупила и не знала, что ей говорить, поэтому вот то, что реально работает на кухне, когда руки заняты.</p>
-  <ul class="guide-list">
-    <li>«Придумай пять хуков для ролика про то, как я разбираю шкаф»</li>
-    <li>«Я сейчас расскажу идею своими словами, а ты разложи её по шагам»</li>
-    <li>«Перепиши это так, чтобы звучало живой речью, а не как реклама»</li>
-    <li>«Задай мне пять вопросов, чтобы я сама поняла, о чём хочу снять»</li>
-  </ul>
-  <div class="scenario-card__tip"><strong>Совет:</strong> просите отвечать коротко, потому что колонка зачитывает всё вслух, и длинная простыня с пунктами звучит невыносимо.</div>
-
-  <div class="part">Если нужен именно ChatGPT</div>
-  <h2 class="part-title">Это уже <em>на вечер</em></h2>
-  <p class="text">Сразу честно: думает в режиме выше нейросеть Яндекса, и про вас лично она ничего не знает. Если хочется, чтобы с вами разговаривал именно ChatGPT и чтобы он был в курсе вашего блога, собирается это отдельно и занимает вечер.</p>
-  <p class="text">Программировать не нужно, готовый код уже лежит в интернете и подключается ссылкой. Вам останется нажать несколько кнопок и перенести три строчки из одного окна в другое.</p>
+  <div class="part">Вариант 2 · настоящий ChatGPT</div>
+  <h2 class="part-title">Пять шагов, <em>примерно на вечер</em></h2>
+  <p class="text">Программировать не нужно, код уже готов и подключается ссылкой. Ваша задача — нажать кнопки и перенести три строчки из одного окна в другое.</p>
 
   <figure class="figure">
-    <svg viewBox="0 0 740 136" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: вы говорите в колонку, Алиса передаёт в ваш навык, навык в приложение, приложение в ChatGPT">
+    <svg viewBox="0 0 700 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: вы говорите в колонку, Алиса передаёт в ваш навык, навык в приложение, приложение в ChatGPT">
       <defs>
         <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
           <path d="M0,0 L8,4 L0,8 z" fill="#710C04"/>
         </marker>
       </defs>
-      <g font-family="Inter, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle">
-        <rect x="8" y="34" width="118" height="56" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="67" y="58">Вы говорите</text><text x="67" y="76" fill="#777">в колонку</text>
-        <rect x="160" y="34" width="118" height="56" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="219" y="58">Алиса</text><text x="219" y="76" fill="#777">слышит</text>
-        <rect x="312" y="34" width="118" height="56" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="371" y="58">Ваш навык</text><text x="371" y="76" fill="#777">у Яндекса</text>
-        <rect x="464" y="34" width="118" height="56" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="523" y="58">Приложение</text><text x="523" y="76" fill="#777">на хостинге</text>
-        <rect x="616" y="34" width="116" height="56" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="674" y="58">ChatGPT</text><text x="674" y="76" fill="#777">отвечает</text>
-        <line x1="130" y1="62" x2="154" y2="62" stroke="#710C04" marker-end="url(#ar)"/>
-        <line x1="282" y1="62" x2="306" y2="62" stroke="#710C04" marker-end="url(#ar)"/>
-        <line x1="434" y1="62" x2="458" y2="62" stroke="#710C04" marker-end="url(#ar)"/>
-        <line x1="586" y1="62" x2="610" y2="62" stroke="#710C04" marker-end="url(#ar)"/>
-        <text x="371" y="116" font-size="11" fill="#999">красным — те два окна, которые вы откроете в браузере</text>
+      <g font-family="Inter, sans-serif" font-size="11.5" fill="#1a1a1a" text-anchor="middle">
+        <rect x="6" y="30" width="112" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="62" y="53">Вы говорите</text><text x="62" y="71" fill="#777">в колонку</text>
+        <rect x="152" y="30" width="112" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="208" y="53">Алиса</text><text x="208" y="71" fill="#777">слышит</text>
+        <rect x="298" y="30" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="354" y="53">Ваш навык</text><text x="354" y="71" fill="#777">у Яндекса</text>
+        <rect x="444" y="30" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="500" y="53">Приложение</text><text x="500" y="71" fill="#777">на хостинге</text>
+        <rect x="590" y="30" width="104" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="642" y="53">ChatGPT</text><text x="642" y="71" fill="#777">отвечает</text>
+        <line x1="122" y1="57" x2="146" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
+        <line x1="268" y1="57" x2="292" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
+        <line x1="414" y1="57" x2="438" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
+        <line x1="560" y1="57" x2="584" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
+        <text x="350" y="110" font-size="10.5" fill="#999">красным — те два окна, которые вы откроете в браузере</text>
       </g>
     </svg>
-    <figcaption>Вся схема целиком. Алиса тут работает микрофоном, а думает ChatGPT.</figcaption>
   </figure>
 
-  <div class="highlight">
-    Про деньги сразу: ключ к нейросети стоит 1 ₽ в месяц плюс копейки за ответы, хостинг примерно от 510 ₽ в месяц. Платится обычной российской картой, VPN не нужен.
-  </div>
+  <div class="highlight">Деньги: ключ к нейросети 1 ₽ в месяц плюс копейки за ответы, хостинг примерно от 510 ₽ в месяц. Обычная российская карта, VPN не нужен.</div>
 
   <ol class="steps">
     <li data-step="1">
       <span class="steps__num">01</span>
       <span class="steps__body">
-        <span class="steps__title">Берём ключ</span>
-        <span class="steps__path"><a class="link" href="https://timeweb.cloud/">Timeweb Cloud</a> → <strong>ИИ-сервисы</strong> → <strong>AI Gateway</strong> → <strong>Создать ключ</strong>. Скопируйте его в заметки.</span>
+        <span class="steps__title">Взять ключ</span>
+        <span class="steps__path"><a class="link" href="https://timeweb.cloud/">Timeweb Cloud</a> → <strong>ИИ-сервисы</strong> → <strong>AI Gateway</strong> → <strong>Создать ключ</strong>. Скопировать.</span>
       </span>
       <button class="check" type="button" aria-pressed="false">готово</button>
     </li>
     <li data-step="2">
       <span class="steps__num">02</span>
       <span class="steps__body">
-        <span class="steps__title">Включаем приложение</span>
-        <span class="steps__path">Там же <strong>App Platform</strong> → <strong>Создать</strong> → <strong>git-репозиторий по URL</strong>, вставьте <code>https://github.com/ituzov/ituzovlab-alice.git</code>, выберите Node.js и простой тариф, а ключ из первого шага вставьте в поле <code>API_KEY</code>.</span>
+        <span class="steps__title">Поднять приложение</span>
+        <span class="steps__path">Там же <strong>App Platform</strong> → <strong>Создать</strong> → <strong>git-репозиторий по URL</strong> → вставить <code>https://github.com/ituzov/ituzovlab-alice.git</code>, выбрать Node.js, а ключ вставить в поле <code>API_KEY</code>.</span>
       </span>
       <button class="check" type="button" aria-pressed="false">готово</button>
     </li>
     <li data-step="3">
       <span class="steps__num">03</span>
       <span class="steps__body">
-        <span class="steps__title">Заводим навык</span>
-        <span class="steps__path"><a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru</a> под аккаунтом колонки → <strong>Создать диалог</strong> → <strong>Навык в Алисе</strong> → доступ <strong>Приватный</strong>. Имя для вызова придумайте из двух слов, например «мой ассистент».</span>
+        <span class="steps__title">Создать навык</span>
+        <span class="steps__path"><a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru</a> под аккаунтом колонки → <strong>Создать диалог</strong> → <strong>Навык в Алисе</strong> → доступ <strong>Приватный</strong>. Имя для вызова — два слова, например «мой ассистент».</span>
       </span>
       <button class="check" type="button" aria-pressed="false">готово</button>
     </li>
     <li data-step="4">
       <span class="steps__num">04</span>
       <span class="steps__body">
-        <span class="steps__title">Переносим три строчки</span>
-        <span class="steps__path">Адрес приложения с вкладки <strong>Дашборд</strong> вставьте в <strong>Webhook URL</strong> у навыка, а ID навыка с вкладки <strong>Тестирование</strong> вставьте в приложение. Как на картинке ниже.</span>
+        <span class="steps__title">Перенести три строчки</span>
+        <span class="steps__path">По табличке ниже. Адрес вставлять вместе с <code>https://</code>, иначе Яндекс не примет.</span>
       </span>
       <button class="check" type="button" aria-pressed="false">готово</button>
     </li>
     <li data-step="5">
       <span class="steps__num">05</span>
       <span class="steps__body">
-        <span class="steps__title">Рассказываем, кто вы</span>
-        <span class="steps__path">Вставьте в настройки приложения инструкцию про себя (она ниже), нажмите <strong>Опубликовать</strong> и зовите колонку: «Алиса, запусти навык…».</span>
+        <span class="steps__title">Сказать, кто вы, и опубликовать</span>
+        <span class="steps__path">Вставить инструкцию про себя (она ниже) → <strong>Опубликовать</strong> → сказать колонке «Алиса, запусти навык…».</span>
       </span>
       <button class="check" type="button" aria-pressed="false">готово</button>
     </li>
@@ -313,50 +262,43 @@ body {
   </div>
 
   <figure class="figure">
-    <svg viewBox="0 0 740 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Таблица: что копируем и куда вставляем">
-      <g font-family="Inter, sans-serif" font-size="12.5" fill="#1a1a1a">
-        <text x="20" y="28" font-weight="700" font-size="13">ЧТО КОПИРУЕМ</text>
-        <text x="420" y="28" font-weight="700" font-size="13">КУДА ВСТАВЛЯЕМ</text>
+    <svg viewBox="0 0 700 186" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Таблица: что копируем и куда вставляем">
+      <g font-family="Inter, sans-serif" font-size="12" fill="#1a1a1a">
+        <text x="16" y="26" font-weight="700" font-size="12.5">ЧТО КОПИРУЕМ</text>
+        <text x="398" y="26" font-weight="700" font-size="12.5">КУДА ВСТАВЛЯЕМ</text>
 
-        <rect x="20" y="42" width="300" height="38" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="34" y="66">Ключ из AI Gateway</text>
-        <rect x="420" y="42" width="300" height="38" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="434" y="66">Поле API_KEY в приложении</text>
-        <line x1="326" y1="61" x2="414" y2="61" stroke="#710C04" stroke-dasharray="4 3"/>
+        <rect x="16" y="40" width="286" height="36" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="29" y="63">Ключ из AI Gateway</text>
+        <rect x="398" y="40" width="286" height="36" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="411" y="63">Поле API_KEY в приложении</text>
+        <line x1="308" y1="58" x2="392" y2="58" stroke="#710C04" stroke-dasharray="4 3"/>
 
-        <rect x="20" y="92" width="300" height="38" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="34" y="116">Адрес приложения с Дашборда</text>
-        <rect x="420" y="92" width="300" height="38" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="434" y="116">Поле Webhook URL у навыка</text>
-        <line x1="326" y1="111" x2="414" y2="111" stroke="#710C04" stroke-dasharray="4 3"/>
+        <rect x="16" y="88" width="286" height="36" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="29" y="111">Адрес приложения с Дашборда</text>
+        <rect x="398" y="88" width="286" height="36" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="411" y="111">Поле Webhook URL у навыка</text>
+        <line x1="308" y1="106" x2="392" y2="106" stroke="#710C04" stroke-dasharray="4 3"/>
 
-        <rect x="20" y="142" width="300" height="38" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="34" y="166">ID навыка с вкладки «Тестирование»</text>
-        <rect x="420" y="142" width="300" height="38" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="434" y="166">Поле ALICE_SKILL_ID в приложении</text>
-        <line x1="326" y1="161" x2="414" y2="161" stroke="#710C04" stroke-dasharray="4 3"/>
+        <rect x="16" y="136" width="286" height="36" fill="#f5f5f5" stroke="#e0e0e0"/>
+        <text x="29" y="159">ID навыка со вкладки «Тестирование»</text>
+        <rect x="398" y="136" width="286" height="36" fill="#f9f9f9" stroke="#710C04"/>
+        <text x="411" y="159">Поле ALICE_SKILL_ID в приложении</text>
+        <line x1="308" y1="154" x2="392" y2="154" stroke="#710C04" stroke-dasharray="4 3"/>
       </g>
     </svg>
-    <figcaption>Четвёртый шаг целиком. Адрес вставляйте вместе с <code>https://</code> в начале, без него Яндекс его не примет.</figcaption>
+    <figcaption>Четвёртый шаг целиком.</figcaption>
   </figure>
 
   <div class="prompt-box">
     <div class="prompt-box__title">Инструкция про себя</div>
     <div class="prompt-box__subtitle">Для пятого шага, замените то, что в скобках</div>
-    <p class="prompt-box__text">«Ты мой личный ассистент. Я веду блог про [тема], моя аудитория — [кто это], я пишу [как именно: тепло, на „вы", с самоиронией]. Отвечай коротко и живой речью, без списков и заголовков, это будет звучать вслух. Если я проговариваю идею для ролика, сразу предложи хук и разложи её по шагам».</p>
+    <p class="prompt-box__text">«Ты мой личный ассистент. Я веду блог про [тема], моя аудитория — [кто это], пишу [тепло, на „вы", с самоиронией]. Отвечай коротко и живой речью, без списков и заголовков, это будет звучать вслух».</p>
   </div>
 
-  <div class="scenario-card">
-    <div class="scenario-card__num">Если что-то пошло не так</div>
-    <div class="scenario-card__title">Две поломки, которые бывают почти у всех</div>
-    <p class="text">Колонка отвечает «такого навыка нет» — значит, навык ещё не опубликован или вы зовёте его не тем именем, и проще всего открыть настройки и прочитать имя оттуда дословно.</p>
-    <p class="text" style="margin-bottom:0">Алиса говорит «навык не отвечает» — обычно дело в адресе в поле <strong>Webhook URL</strong>, там либо потерялся <code>https://</code>, либо приложение на хостинге заснуло и его надо перезапустить 🤍</p>
-  </div>
-
-  <p class="footer-note">Раньше я записывала идеи в заметки. Теперь <em>просто говорю вслух</em>.</p>
+  <div class="scenario-card__tip"><strong>Если не работает:</strong> «такого навыка нет» — навык не опубликован или вы зовёте его другим именем, посмотрите имя в настройках дословно. «Навык не отвечает» — проверьте адрес в <strong>Webhook URL</strong> и что приложение на хостинге запущено 🤍</div>
 
   <div class="cta">
-    <p class="cta__text">Попробуйте прямо сейчас и напишите, что она вам выдала 🤍</p>
+    <p class="cta__text">Получилось? Напишите, о чём первом с ней заговорили 🤍</p>
     <p class="cta__text cta__sub">Такие разборы я выкладываю у себя в канале — <a class="cta__link" href="https://t.me/maysoulme">@maysoulme</a></p>
   </div>
 
@@ -367,7 +309,7 @@ body {
 
 <script>
 (function () {
-  var KEY = 'ms-alisa-steps-v3';
+  var KEY = 'ms-alisa-steps-v4';
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.check'));
   var total = buttons.length;
   var countEl = document.getElementById('pcount');
