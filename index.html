@@ -7,7 +7,7 @@
 <meta name="ms-section" content="life">
 <meta name="ms-tag" content="Гайд">
 <meta name="ms-title" content="Как подключить <i>ChatGPT к Алисе</i>">
-<meta name="ms-desc" content="Короткая инструкция: одна фраза для умного режима и пять шагов, если нужен именно ChatGPT.">
+<meta name="ms-desc" content="Подробная инструкция с картинкой на каждый экран: где нажать, что скопировать, куда вставить.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
 <style>
@@ -32,7 +32,7 @@ body {
   font-style: italic; color: #888; letter-spacing: 0.5px;
 }
 
-.container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
 
 .hero { padding: 56px 0 36px; }
 .badge {
@@ -52,13 +52,17 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px; font-style: italic; color: var(--accent);
   letter-spacing: 2px; text-transform: uppercase;
-  padding: 44px 0 0; border-top: 1px solid #e8e8e8;
+  padding: 48px 0 0; border-top: 1px solid #e8e8e8;
 }
 .part-title {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 27px; font-weight: 700; line-height: 1.3; padding: 8px 0 16px;
 }
 .part-title em { font-style: italic; color: var(--accent); }
+
+.text { font-size: 17px; color: #444; line-height: 1.75; margin-bottom: 14px; }
+.text strong { color: #1a1a1a; }
+.link { color: var(--accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
 
 .say { background: #f5f5f5; padding: 32px 24px; margin: 20px 0; text-align: center; }
 .say__label { font-size: 12px; color: #999; letter-spacing: 2px; margin-bottom: 12px; }
@@ -67,52 +71,68 @@ body {
   font-size: 27px; font-weight: 700; color: var(--accent); line-height: 1.35;
 }
 
-.steps { list-style: none; margin: 4px 0 20px; }
-.steps > li {
-  display: flex; gap: 16px; align-items: flex-start;
-  padding: 16px 0; border-bottom: 1px solid #f0f0f0;
+.highlight {
+  background: #f5f5f5; padding: 18px 22px; margin: 20px 0;
+  font-size: 16px; line-height: 1.7; color: #444;
 }
-.steps > li:first-child { border-top: 1px solid #f0f0f0; }
-.steps__num {
+.highlight code, .text code, .step__text code, .carry__line code {
+  font-family: 'Inter', sans-serif; font-weight: 600; color: #1a1a1a;
+  background: #ebebeb; padding: 1px 6px; font-size: 14.5px; word-break: break-all;
+}
+
+.tip {
+  background: #f0f0f0; padding: 14px 18px; margin: 16px 0;
+  font-size: 14.5px; color: #555; line-height: 1.65;
+}
+.tip strong { color: var(--accent); }
+
+.figure { margin: 22px 0 8px; }
+.figure svg { display: block; width: 100%; height: auto; border: 1px solid #e8e8e8; background: #fff; }
+.figure figcaption { font-size: 13px; color: #999; margin-top: 8px; line-height: 1.6; }
+
+.step { padding: 32px 0; border-bottom: 1px solid #f0f0f0; }
+.step:first-of-type { border-top: 1px solid #f0f0f0; }
+.step__head { display: flex; gap: 16px; align-items: baseline; }
+.step__num {
   font-family: 'Libre Baskerville', Georgia, serif;
-  font-style: italic; font-size: 15px; color: var(--accent);
-  min-width: 24px; flex-shrink: 0; padding-top: 2px;
+  font-style: italic; font-size: 17px; color: var(--accent);
+  min-width: 34px; flex-shrink: 0;
 }
-.steps__body { flex: 1; }
-.steps__title { font-size: 17px; font-weight: 600; color: #1a1a1a; line-height: 1.5; }
-.steps__path { font-size: 15px; color: #666; line-height: 1.6; margin-top: 2px; }
-.steps__path strong { color: #1a1a1a; font-weight: 600; }
+.step__title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 21px; font-weight: 700; line-height: 1.35; flex: 1;
+}
+.step__body { padding-left: 50px; }
+.step__text { font-size: 16.5px; color: #444; line-height: 1.75; margin-top: 8px; }
+.step__text strong { color: #1a1a1a; }
+.step__foot { padding-left: 50px; margin-top: 16px; }
 .check {
-  flex-shrink: 0; align-self: center;
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase;
   color: #aaa; background: #fff; border: 1px solid #e0e0e0;
-  padding: 6px 12px; cursor: pointer; line-height: 1;
+  padding: 8px 16px; cursor: pointer; line-height: 1;
 }
 .check:hover { border-color: #bbb; color: #777; }
 .check[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 .progress {
-  background: #f5f5f5; padding: 14px 18px; margin: 0 0 24px;
+  background: #f5f5f5; padding: 16px 20px; margin: 24px 0 8px;
   font-size: 14px; color: #555; display: flex; align-items: center; gap: 14px;
+  position: sticky; bottom: 0; z-index: 50; border-top: 1px solid #ebebeb;
 }
 .progress__bar { flex: 1; height: 4px; background: #e2e2e2; position: relative; }
 .progress__fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--accent); transition: width .2s; }
 .progress__reset { background: none; border: none; color: #999; font-size: 13px; cursor: pointer; font-family: inherit; text-decoration: underline; padding: 0; }
 .progress__reset:hover { color: var(--accent); }
 
-.highlight {
-  background: #f5f5f5; padding: 18px 22px; margin: 20px 0;
-  font-size: 16px; line-height: 1.7; color: #444;
+.carry { background: #f9f9f9; border: 1px solid #e8e8e8; padding: 26px 28px; margin: 24px 0; }
+.carry__title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 19px; font-weight: 700; color: var(--accent); margin-bottom: 4px;
 }
-.highlight code, .text code, .steps__path code {
-  font-family: 'Inter', sans-serif; font-weight: 600; color: #1a1a1a;
-  background: #ebebeb; padding: 1px 6px; font-size: 14.5px; word-break: break-all;
-}
-
-.text { font-size: 17px; color: #444; line-height: 1.75; margin-bottom: 14px; }
-.text strong { color: #1a1a1a; }
-.link { color: var(--accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
+.carry__sub { font-size: 13.5px; color: #888; margin-bottom: 18px; line-height: 1.6; }
+.carry__line { font-size: 15.5px; color: #444; padding: 10px 0; border-top: 1px solid #ebebeb; line-height: 1.6; }
+.carry__line strong { color: #1a1a1a; }
 
 .prompt-box { background: #f5f5f5; padding: 30px; margin: 24px 0; }
 .prompt-box__title {
@@ -122,15 +142,11 @@ body {
 .prompt-box__subtitle { font-size: 13px; color: #888; margin-bottom: 16px; }
 .prompt-box__text { font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
 
-.figure { margin: 24px 0 8px; }
-.figure svg { display: block; width: 100%; height: auto; border: 1px solid #e8e8e8; background: #fff; }
-.figure figcaption { font-size: 13px; color: #999; margin-top: 8px; line-height: 1.6; }
-
-.scenario-card__tip {
-  background: #f0f0f0; padding: 14px 18px; margin: 16px 0;
-  font-size: 14.5px; color: #555; line-height: 1.65;
-}
-.scenario-card__tip strong { color: var(--accent); }
+.words { margin: 20px 0 8px; }
+.words__row { display: flex; gap: 18px; padding: 14px 0; border-top: 1px solid #f0f0f0; font-size: 16px; line-height: 1.65; }
+.words__row:last-child { border-bottom: 1px solid #f0f0f0; }
+.words__w { min-width: 160px; flex-shrink: 0; font-weight: 600; color: var(--accent); }
+.words__d { color: #555; }
 
 .cta { background: #f5f5f5; text-align: center; padding: 36px 24px; margin: 48px 0 0; }
 .cta__text { font-size: 17px; color: #1a1a1a; line-height: 1.7; margin-bottom: 8px; }
@@ -147,9 +163,11 @@ body {
   .hero h1 { font-size: 26px; }
   .part-title { font-size: 22px; }
   .say__phrase { font-size: 20px; }
-  .steps > li { flex-wrap: wrap; }
-  .check { margin-left: 40px; }
-  .prompt-box { padding: 22px; }
+  .step__title { font-size: 18px; }
+  .step__body, .step__foot { padding-left: 0; }
+  .step__num { min-width: 28px; font-size: 15px; }
+  .prompt-box, .carry { padding: 22px; }
+  .words__row { flex-direction: column; gap: 2px; }
 }
 </style>
 </head>
@@ -164,31 +182,29 @@ body {
   <section class="hero">
     <span class="badge">Инструкция</span>
     <h1>Как подключить <em>ChatGPT к Алисе</em></h1>
-    <p class="hero__desc">Два варианта: быстрый на одну фразу и настоящий, если нужен именно ChatGPT.</p>
+    <p class="hero__desc">Двенадцать мелких шагов и картинка на каждый экран: где нажать, что скопировать, куда вставить. Программировать не нужно нигде.</p>
   </section>
 
-  <div class="part">Вариант 1 · одна фраза</div>
-  <h2 class="part-title">Умный режим, <em>который уже есть</em></h2>
-  <p class="text">Скажите колонке эту фразу, и Алиса переключится в режим нейросети. Настраивать нечего, платить не нужно.</p>
+  <div class="part">Сначала самое простое</div>
+  <h2 class="part-title">Одна фраза, <em>без всякой настройки</em></h2>
+  <p class="text">У Алисы уже есть умный режим. Скажите колонке эту фразу, и она начнёт отвечать нейросетью — рассуждать, придумывать, разбирать вашу мысль.</p>
 
   <div class="say">
     <div class="say__label">СКАЖИТЕ КОЛОНКЕ</div>
     <div class="say__phrase">«Алиса, давай&nbsp;придумаем»</div>
   </div>
 
-  <p class="text">Вернуть обычную Алису — «Алиса, хватит». Если не переключилась, попробуйте «Алиса, включи нейросеть».</p>
-  <div class="scenario-card__tip"><strong>Важно:</strong> думает тут нейросеть Яндекса, а не ChatGPT, и про вас она ничего не знает.</div>
+  <p class="text">Чтобы вернуть обычную Алису — «Алиса, хватит». Если не переключилась, попробуйте «Алиса, включи нейросеть».</p>
+  <div class="tip"><strong>Но:</strong> думает там нейросеть Яндекса, а не ChatGPT, и про вас она ничего не знает. Если нужен именно ChatGPT и чтобы он помнил, кто вы, — дальше всё остальное.</div>
 
-  <div class="part">Вариант 2 · настоящий ChatGPT</div>
-  <h2 class="part-title">Пять шагов, <em>примерно на вечер</em></h2>
-  <p class="text">Программировать не нужно, код уже готов и подключается ссылкой. Ваша задача — нажать кнопки и перенести три строчки из одного окна в другое.</p>
+  <div class="part">Перед началом</div>
+  <h2 class="part-title">Что вообще <em>будет происходить</em></h2>
+  <p class="text">Колонка не умеет звонить в ChatGPT напрямую. Между ними нужен маленький посредник — программка, которая живёт в интернете и переводит слова колонки в вопрос к нейросети. Код этой программки уже написан, её нужно просто включить.</p>
 
   <figure class="figure">
-    <svg viewBox="0 0 700 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: вы говорите в колонку, Алиса передаёт в ваш навык, навык в приложение, приложение в ChatGPT">
+    <svg viewBox="0 0 700 132" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: вы говорите в колонку, Алиса передаёт в ваш навык, навык в программку на хостинге, программка в ChatGPT">
       <defs>
-        <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 z" fill="#710C04"/>
-        </marker>
+        <marker id="ar0" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#710C04"/></marker>
       </defs>
       <g font-family="Inter, sans-serif" font-size="11.5" fill="#1a1a1a" text-anchor="middle">
         <rect x="6" y="30" width="112" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
@@ -198,107 +214,450 @@ body {
         <rect x="298" y="30" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
         <text x="354" y="53">Ваш навык</text><text x="354" y="71" fill="#777">у Яндекса</text>
         <rect x="444" y="30" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="500" y="53">Приложение</text><text x="500" y="71" fill="#777">на хостинге</text>
+        <text x="500" y="53">Программка</text><text x="500" y="71" fill="#777">на хостинге</text>
         <rect x="590" y="30" width="104" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
         <text x="642" y="53">ChatGPT</text><text x="642" y="71" fill="#777">отвечает</text>
-        <line x1="122" y1="57" x2="146" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
-        <line x1="268" y1="57" x2="292" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
-        <line x1="414" y1="57" x2="438" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
-        <line x1="560" y1="57" x2="584" y2="57" stroke="#710C04" marker-end="url(#ar)"/>
-        <text x="350" y="110" font-size="10.5" fill="#999">красным — те два окна, которые вы откроете в браузере</text>
+        <line x1="122" y1="57" x2="146" y2="57" stroke="#710C04" marker-end="url(#ar0)"/>
+        <line x1="268" y1="57" x2="292" y2="57" stroke="#710C04" marker-end="url(#ar0)"/>
+        <line x1="414" y1="57" x2="438" y2="57" stroke="#710C04" marker-end="url(#ar0)"/>
+        <line x1="560" y1="57" x2="584" y2="57" stroke="#710C04" marker-end="url(#ar0)"/>
+        <text x="350" y="112" font-size="10.5" fill="#999">бордовым — то, что вы сделаете руками: два окна в браузере</text>
       </g>
     </svg>
+    <figcaption>Вся затея целиком. Делать нужно только две бордовые клетки.</figcaption>
   </figure>
 
-  <div class="highlight">Деньги: ключ к нейросети 1 ₽ в месяц плюс копейки за ответы, хостинг примерно от 510 ₽ в месяц. Обычная российская карта, VPN не нужен.</div>
+  <p class="text">Дальше будут слова, которые могут напугать. Вот что они значат, больше терминов не будет:</p>
 
-  <ol class="steps">
-    <li data-step="1">
-      <span class="steps__num">01</span>
-      <span class="steps__body">
-        <span class="steps__title">Взять ключ</span>
-        <span class="steps__path"><a class="link" href="https://timeweb.cloud/">Timeweb Cloud</a> → <strong>ИИ-сервисы</strong> → <strong>AI Gateway</strong> → <strong>Создать ключ</strong>. Скопировать.</span>
-      </span>
-      <button class="check" type="button" aria-pressed="false">готово</button>
-    </li>
-    <li data-step="2">
-      <span class="steps__num">02</span>
-      <span class="steps__body">
-        <span class="steps__title">Поднять приложение</span>
-        <span class="steps__path">Там же <strong>App Platform</strong> → <strong>Создать</strong> → <strong>git-репозиторий по URL</strong> → вставить <code>https://github.com/ituzov/ituzovlab-alice.git</code>, выбрать Node.js, а ключ вставить в поле <code>API_KEY</code>.</span>
-      </span>
-      <button class="check" type="button" aria-pressed="false">готово</button>
-    </li>
-    <li data-step="3">
-      <span class="steps__num">03</span>
-      <span class="steps__body">
-        <span class="steps__title">Создать навык</span>
-        <span class="steps__path"><a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru</a> под аккаунтом колонки → <strong>Создать диалог</strong> → <strong>Навык в Алисе</strong> → доступ <strong>Приватный</strong>. Имя для вызова — два слова, например «мой ассистент».</span>
-      </span>
-      <button class="check" type="button" aria-pressed="false">готово</button>
-    </li>
-    <li data-step="4">
-      <span class="steps__num">04</span>
-      <span class="steps__body">
-        <span class="steps__title">Перенести три строчки</span>
-        <span class="steps__path">По табличке ниже. Адрес вставлять вместе с <code>https://</code>, иначе Яндекс не примет.</span>
-      </span>
-      <button class="check" type="button" aria-pressed="false">готово</button>
-    </li>
-    <li data-step="5">
-      <span class="steps__num">05</span>
-      <span class="steps__body">
-        <span class="steps__title">Сказать, кто вы, и опубликовать</span>
-        <span class="steps__path">Вставить инструкцию про себя (она ниже) → <strong>Опубликовать</strong> → сказать колонке «Алиса, запусти навык…».</span>
-      </span>
-      <button class="check" type="button" aria-pressed="false">готово</button>
-    </li>
-  </ol>
+  <div class="words">
+    <div class="words__row"><span class="words__w">Хостинг</span><span class="words__d">место в интернете, где живёт та программка. Как квартира, только для кода.</span></div>
+    <div class="words__row"><span class="words__w">Ключ</span><span class="words__d">длинная строчка из букв и цифр. По ней нейросеть понимает, что обращаетесь вы, и считает деньги.</span></div>
+    <div class="words__row"><span class="words__w">Навык</span><span class="words__d">ваша личная команда для Алисы. Вы придумаете ей имя и будете звать по нему.</span></div>
+    <div class="words__row"><span class="words__w">Webhook URL</span><span class="words__d">просто поле, куда вставляют адрес. Один раз вставите и забудете.</span></div>
+  </div>
+
+  <div class="highlight"><strong>Что нужно иметь под рукой:</strong> обычную российскую карту, аккаунт Яндекса — именно тот, к которому привязана колонка, и открытый блокнот, хоть бумажный. В блокнот вы перепишете три строчки, и это вся сложность.</div>
+
+  <div class="highlight"><strong>Деньги:</strong> ключ стоит 1 ₽ в месяц плюс копейки за каждый ответ, хостинг — примерно от 510 ₽ в месяц. VPN и зарубежная карта не нужны.</div>
+
+  <div class="part">Часть первая · шаги 1–6</div>
+  <h2 class="part-title">Хостинг и ключ, <em>всё в одном кабинете</em></h2>
+  <p class="text">Всю первую часть вы проведёте на одном сайте — timeweb.cloud. Это российский хостинг, карта проходит обычная.</p>
+
+  <div class="step" data-step="1">
+    <div class="step__head"><span class="step__num">01</span><h3 class="step__title">Зарегистрироваться на хостинге</h3></div>
+    <div class="step__body">
+      <p class="step__text">Откройте <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a> и нажмите <strong>Регистрация</strong> в правом верхнем углу. Почта, пароль, подтверждение из письма — как везде.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Окно браузера с сайтом timeweb.cloud, кнопка Регистрация в правом верхнем углу">
+          <defs><marker id="arA" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="150" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="32" fill="#f5f5f5" stroke="#ddd"/>
+            <circle cx="30" cy="28" r="4" fill="#dcdcdc"/><circle cx="44" cy="28" r="4" fill="#dcdcdc"/><circle cx="58" cy="28" r="4" fill="#dcdcdc"/>
+            <rect x="76" y="19" width="300" height="18" fill="#fff" stroke="#e2e2e2"/>
+            <text x="86" y="32" font-size="11" fill="#555">timeweb.cloud</text>
+            <text x="34" y="86" font-size="15" font-weight="700" fill="#1a1a1a">Timeweb Cloud</text>
+            <text x="34" y="108" font-size="11.5" fill="#999">Облачные серверы, базы данных, ИИ-сервисы</text>
+            <rect x="420" y="66" width="86" height="28" fill="#fff" stroke="#e2e2e2"/>
+            <text x="463" y="85" font-size="11.5" fill="#888" text-anchor="middle">Войти</text>
+            <rect x="518" y="66" width="140" height="28" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="588" y="85" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Регистрация</text>
+            <line x1="588" y1="196" x2="588" y2="100" stroke="#710C04" stroke-width="1.6" marker-end="url(#arA)"/>
+            <circle cx="588" cy="208" r="13" fill="#710C04"/>
+            <text x="588" y="213" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="556" y="213" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">нажмите здесь</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="2">
+    <div class="step__head"><span class="step__num">02</span><h3 class="step__title">Найти ИИ-сервисы в меню слева</h3></div>
+    <div class="step__body">
+      <p class="step__text">После входа вы окажетесь в кабинете. Слева будет длинный список разделов. Нужен <strong>ИИ-сервисы</strong>, а внутри него — <strong>AI Gateway</strong>. Это и есть то место, где выдают ключ к нейросети.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кабинет хостинга, в меню слева выбран пункт ИИ-сервисы, внутри AI Gateway">
+          <defs><marker id="arB" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="186" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Timeweb Cloud · ваш кабинет</text>
+            <rect x="12" y="42" width="190" height="156" fill="#fafafa" stroke="#ebebeb"/>
+            <text x="32" y="68" font-size="12" fill="#888">Облачные серверы</text>
+            <text x="32" y="92" font-size="12" fill="#888">Базы данных</text>
+            <rect x="20" y="102" width="174" height="28" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="32" y="121" font-size="12" font-weight="600" fill="#710C04">ИИ-сервисы</text>
+            <text x="46" y="148" font-size="11.5" fill="#710C04" font-weight="600">AI Gateway</text>
+            <text x="46" y="170" font-size="11.5" fill="#aaa">App Platform</text>
+            <text x="232" y="74" font-size="13" font-weight="700" fill="#1a1a1a">AI Gateway</text>
+            <text x="232" y="96" font-size="11.5" fill="#999">Один ключ к разным нейросетям</text>
+            <rect x="232" y="116" width="130" height="30" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="297" y="136" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Создать ключ</text>
+            <line x1="107" y1="216" x2="107" y2="134" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
+            <circle cx="107" cy="228" r="13" fill="#710C04"/>
+            <text x="107" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="130" y="233" font-size="12" fill="#710C04" font-weight="600">сначала сюда</text>
+            <line x1="297" y1="216" x2="297" y2="150" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
+            <circle cx="297" cy="228" r="13" fill="#710C04"/>
+            <text x="297" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+            <text x="320" y="233" font-size="12" fill="#710C04" font-weight="600">потом сюда</text>
+          </g>
+        </svg>
+        <figcaption>Названия разделов в кабинете могут стоять в другом порядке — ищите глазами именно слова «ИИ-сервисы».</figcaption>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="3">
+    <div class="step__head"><span class="step__num">03</span><h3 class="step__title">Создать ключ и сразу переписать его в блокнот</h3></div>
+    <div class="step__body">
+      <p class="step__text">Нажмите <strong>Создать ключ</strong>. Появится длинная строчка — нажмите рядом с ней <strong>Скопировать</strong> и вставьте в блокнот. Это <strong>строчка №1</strong> из трёх.</p>
+      <p class="step__text">Сделайте это сразу. Целиком ключ показывают один раз, потом он прячется за точками, и придётся создавать новый.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 212" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Окно с созданным ключом и кнопкой Скопировать">
+          <defs><marker id="arC" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="148" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Ключ создан</text>
+            <text x="34" y="68" font-size="11.5" fill="#999">Сохраните ключ, он показывается только сейчас</text>
+            <rect x="34" y="82" width="470" height="34" fill="#f5f5f5" stroke="#e0e0e0"/>
+            <text x="48" y="104" font-size="12" fill="#555" font-family="Inter, monospace">sk-tw-a7f31c9e04b8d26 · · · · · · · ·</text>
+            <rect x="516" y="82" width="138" height="34" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="585" y="104" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Скопировать</text>
+            <line x1="585" y1="178" x2="585" y2="122" stroke="#710C04" stroke-width="1.6" marker-end="url(#arC)"/>
+            <circle cx="585" cy="190" r="13" fill="#710C04"/>
+            <text x="585" y="195" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="553" y="195" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">и сразу в блокнот</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="4">
+    <div class="step__head"><span class="step__num">04</span><h3 class="step__title">Включить программку из готового кода</h3></div>
+    <div class="step__body">
+      <p class="step__text">Вернитесь в меню слева и выберите <strong>App Platform</strong>, потом <strong>Создать приложение</strong>. Сайт спросит, откуда брать код, и предложит GitHub, GitLab и вариант <strong>по URL</strong>. Нужен третий.</p>
+      <p class="step__text">В поле вставьте эту ссылку:</p>
+      <p class="step__text"><code>https://github.com/ituzov/ituzovlab-alice.git</code></p>
+      <p class="step__text">Дальше сайт сам поймёт, что это Node.js, и предложит тариф. Берите самый дешёвый, этой программке больше не нужно.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Окно создания приложения: вкладка по URL и поле для ссылки на репозиторий">
+          <defs><marker id="arD" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="186" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">App Platform · создание приложения</text>
+            <text x="34" y="66" font-size="12" fill="#888">Откуда взять код</text>
+            <rect x="34" y="78" width="110" height="30" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="89" y="98" font-size="11.5" fill="#999" text-anchor="middle">GitHub</text>
+            <rect x="152" y="78" width="110" height="30" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="207" y="98" font-size="11.5" fill="#999" text-anchor="middle">GitLab</text>
+            <rect x="270" y="78" width="150" height="30" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="345" y="98" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">По URL</text>
+            <rect x="34" y="130" width="620" height="34" fill="#fff" stroke="#710C04" stroke-width="2"/>
+            <text x="48" y="152" font-size="11.5" fill="#555">https://github.com/ituzov/ituzovlab-alice.git</text>
+            <line x1="345" y1="216" x2="345" y2="114" stroke="#710C04" stroke-width="1.6" marker-end="url(#arD)"/>
+            <circle cx="345" cy="228" r="13" fill="#710C04"/>
+            <text x="345" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="313" y="233" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">выбрать эту вкладку</text>
+            <line x1="520" y1="216" x2="520" y2="170" stroke="#710C04" stroke-width="1.6" marker-end="url(#arD)"/>
+            <circle cx="520" cy="228" r="13" fill="#710C04"/>
+            <text x="520" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+            <text x="543" y="233" font-size="12" fill="#710C04" font-weight="600">вставить ссылку</text>
+          </g>
+        </svg>
+        <figcaption>Ссылку лучше скопировать отсюда, а не набирать руками — одна буква мимо, и код не найдётся.</figcaption>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="5">
+    <div class="step__head"><span class="step__num">05</span><h3 class="step__title">Положить ключ внутрь программки</h3></div>
+    <div class="step__body">
+      <p class="step__text">На том же экране будет раздел с переменными — он может называться <strong>Переменные окружения</strong> или <strong>Environment variables</strong>. Там две строчки с именами <code>API_KEY</code> и <code>ALICE_SKILL_ID</code>.</p>
+      <p class="step__text">В <code>API_KEY</code> вставьте ключ из блокнота. Вторую пока оставьте пустой — мы заполним её в десятом шаге. После этого нажимайте <strong>Создать</strong> и ждите, пока статус станет зелёным.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Раздел переменных: в поле API_KEY вставляется ключ, поле ALICE_SKILL_ID пока пустое">
+          <defs><marker id="arE" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="172" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Переменные окружения</text>
+            <rect x="34" y="60" width="190" height="32" fill="#f5f5f5" stroke="#e0e0e0"/>
+            <text x="48" y="81" font-size="11.5" font-weight="600" fill="#1a1a1a">API_KEY</text>
+            <rect x="234" y="60" width="420" height="32" fill="#fff" stroke="#710C04" stroke-width="2"/>
+            <text x="248" y="81" font-size="11.5" fill="#555">sk-tw-a7f31c9e04b8d26 · · · · · · · ·</text>
+            <rect x="34" y="104" width="190" height="32" fill="#f5f5f5" stroke="#e0e0e0"/>
+            <text x="48" y="125" font-size="11.5" font-weight="600" fill="#1a1a1a">ALICE_SKILL_ID</text>
+            <rect x="234" y="104" width="420" height="32" fill="#fff" stroke="#e0e0e0"/>
+            <text x="248" y="125" font-size="11.5" fill="#bbb">пока пусто</text>
+            <rect x="534" y="148" width="120" height="28" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="594" y="167" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Создать</text>
+            <line x1="444" y1="202" x2="444" y2="98" stroke="#710C04" stroke-width="1.6" marker-end="url(#arE)"/>
+            <circle cx="444" cy="214" r="13" fill="#710C04"/>
+            <text x="444" y="219" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="412" y="219" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">сюда ключ из блокнота</text>
+          </g>
+        </svg>
+      </figure>
+      <div class="tip"><strong>Если пустых полей нет:</strong> рядом будет кнопка «Добавить переменную». Имя нужно написать ровно так, большими буквами и с нижним подчёркиванием: <code>API_KEY</code>.</div>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="6">
+    <div class="step__head"><span class="step__num">06</span><h3 class="step__title">Переписать адрес программки в блокнот</h3></div>
+    <div class="step__body">
+      <p class="step__text">Когда приложение запустится, у него появится свой адрес — что-то вида <code>имя.twc1.net</code>. Он будет на главной странице приложения, рядом обычно значок копирования.</p>
+      <p class="step__text">Это <strong>строчка №2</strong>. Копируйте вместе с <code>https://</code> в начале, дальше это окажется важным.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 212" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Страница приложения со статусом Работает и адресом вида имя точка twc1 точка net">
+          <defs><marker id="arF" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="148" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Моё приложение</text>
+            <circle cx="42" cy="68" r="5" fill="#4a7d4a"/>
+            <text x="56" y="72" font-size="12" fill="#4a7d4a" font-weight="600">Работает</text>
+            <text x="34" y="100" font-size="11.5" fill="#999">Адрес приложения</text>
+            <rect x="34" y="110" width="470" height="34" fill="#f5f5f5" stroke="#710C04" stroke-width="2"/>
+            <text x="48" y="132" font-size="12" fill="#1a1a1a">https://my-alice-abc123.twc1.net</text>
+            <rect x="516" y="110" width="138" height="34" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="585" y="132" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Скопировать</text>
+            <line x1="269" y1="178" x2="269" y2="150" stroke="#710C04" stroke-width="1.6" marker-end="url(#arF)"/>
+            <circle cx="269" cy="190" r="13" fill="#710C04"/>
+            <text x="269" y="195" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+            <text x="292" y="195" font-size="12" fill="#710C04" font-weight="600">строчка №2 в блокнот</text>
+          </g>
+        </svg>
+        <figcaption>Статус должен быть зелёным. Если крутится серое — просто подождите пару минут, программка собирается.</figcaption>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="part">Часть вторая · шаги 7–11</div>
+  <h2 class="part-title">Навык у Яндекса, <em>чтобы колонка вас поняла</em></h2>
+  <p class="text">Хостинг можно закрыть, но не до конца — в десятом шаге мы туда вернёмся. Теперь второй сайт.</p>
+
+  <div class="step" data-step="7">
+    <div class="step__head"><span class="step__num">07</span><h3 class="step__title">Войти в кабинет разработчика Алисы</h3></div>
+    <div class="step__body">
+      <p class="step__text">Откройте <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a>. Яндекс попросит войти.</p>
+      <p class="step__text">Тут самое главное за весь гайд: <strong>войдите тем же аккаунтом, к которому привязана колонка.</strong> Если войти другим, навык создастся, но колонка его не услышит, и будет непонятно, что сломалось.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Экран входа Яндекс ID с полем логина и кнопкой Далее">
+          <defs><marker id="arG" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="186" fill="#fafafa" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">passport.yandex.ru</text>
+            <rect x="215" y="58" width="270" height="124" fill="#fff" stroke="#e8e8e8"/>
+            <text x="350" y="86" font-size="13.5" font-weight="700" fill="#1a1a1a" text-anchor="middle">Войдите с Яндекс ID</text>
+            <rect x="239" y="100" width="222" height="30" fill="#fff" stroke="#710C04" stroke-width="2"/>
+            <text x="251" y="120" font-size="11.5" fill="#aaa">Логин или email</text>
+            <rect x="239" y="140" width="222" height="28" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="350" y="159" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Далее</text>
+            <line x1="350" y1="216" x2="350" y2="174" stroke="#710C04" stroke-width="1.6" marker-end="url(#arG)"/>
+            <circle cx="350" cy="228" r="13" fill="#710C04"/>
+            <text x="350" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="318" y="233" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">тот же аккаунт,</text>
+            <text x="373" y="233" font-size="12" fill="#710C04" font-weight="600">что на колонке</text>
+          </g>
+        </svg>
+        <figcaption>Проверить аккаунт можно в приложении «Дом с Алисой»: под каким логином вы там, под таким и входите.</figcaption>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="8">
+    <div class="step__head"><span class="step__num">08</span><h3 class="step__title">Создать диалог и выбрать «Навык в Алисе»</h3></div>
+    <div class="step__body">
+      <p class="step__text">Нажмите <strong>Создать диалог</strong>. Яндекс спросит, что вы делаете, и предложит несколько видов. Выбирайте <strong>Навык в Алисе</strong>.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кабинет Яндекс Диалогов: кнопка Создать диалог и выбор вида Навык в Алисе">
+          <defs><marker id="arH" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="186" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Яндекс Диалоги · мои диалоги</text>
+            <rect x="34" y="58" width="150" height="30" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="109" y="78" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Создать диалог</text>
+            <rect x="34" y="108" width="196" height="64" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="132" y="136" font-size="12" font-weight="600" fill="#710C04" text-anchor="middle">Навык в Алисе</text>
+            <text x="132" y="155" font-size="10.5" fill="#999" text-anchor="middle">этот нам и нужен</text>
+            <rect x="244" y="108" width="196" height="64" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="342" y="143" font-size="12" fill="#bbb" text-anchor="middle">Умный дом</text>
+            <rect x="454" y="108" width="196" height="64" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="552" y="143" font-size="12" fill="#bbb" text-anchor="middle">Чат на сайте</text>
+            <line x1="109" y1="216" x2="109" y2="94" stroke="#710C04" stroke-width="1.6" marker-end="url(#arH)"/>
+            <circle cx="109" cy="228" r="13" fill="#710C04"/>
+            <text x="109" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <line x1="300" y1="216" x2="186" y2="178" stroke="#710C04" stroke-width="1.6" marker-end="url(#arH)"/>
+            <circle cx="300" cy="228" r="13" fill="#710C04"/>
+            <text x="300" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+            <text x="323" y="233" font-size="12" fill="#710C04" font-weight="600">потом эту плитку</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="9">
+    <div class="step__head"><span class="step__num">09</span><h3 class="step__title">Заполнить четыре поля и вставить адрес</h3></div>
+    <div class="step__body">
+      <p class="step__text">Откроется длинная анкета. Полей там много, но заполнить нужно только эти:</p>
+      <p class="step__text"><strong>Название</strong> — любое, его видите только вы.<br>
+      <strong>Имя для вызова</strong> — два простых слова, которыми вы будете звать навык вслух. Например «мой ассистент». Не берите редкие слова, Алиса их не разберёт.<br>
+      <strong>Webhook URL</strong> — сюда вставьте строчку №2 из блокнота, адрес программки.<br>
+      <strong>Доступ</strong> — поставьте <strong>Приватный</strong>, тогда навык будет только ваш.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 272" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Анкета навыка: название, имя для вызова, Webhook URL и приватный доступ">
+          <defs><marker id="arI" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="208" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Настройки навыка</text>
+            <text x="34" y="62" font-size="11" fill="#999">Название</text>
+            <rect x="34" y="68" width="620" height="28" fill="#fff" stroke="#e0e0e0"/>
+            <text x="46" y="87" font-size="11.5" fill="#555">Мой ассистент</text>
+            <text x="34" y="116" font-size="11" fill="#999">Имя для вызова</text>
+            <rect x="34" y="122" width="620" height="28" fill="#fff" stroke="#e0e0e0"/>
+            <text x="46" y="141" font-size="11.5" fill="#555">мой ассистент</text>
+            <text x="34" y="170" font-size="11" fill="#710C04" font-weight="600">Webhook URL</text>
+            <rect x="34" y="176" width="620" height="28" fill="#fff" stroke="#710C04" stroke-width="2"/>
+            <text x="46" y="195" font-size="11.5" fill="#555">https://my-alice-abc123.twc1.net</text>
+            <line x1="344" y1="238" x2="344" y2="210" stroke="#710C04" stroke-width="1.6" marker-end="url(#arI)"/>
+            <circle cx="344" cy="250" r="13" fill="#710C04"/>
+            <text x="344" y="255" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+            <text x="367" y="255" font-size="12" fill="#710C04" font-weight="600">здесь строчка №2, обязательно с https://</text>
+          </g>
+        </svg>
+        <figcaption>Поле «Доступ» лежит ниже, его нужно прокрутить. Остальные поля анкеты для приватного навыка можно не трогать.</figcaption>
+      </figure>
+      <div class="tip"><strong>Частая ошибка:</strong> адрес вставляют без <code>https://</code>. Яндекс такой адрес не принимает и ругается, хотя выглядит он почти так же.</div>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="10">
+    <div class="step__head"><span class="step__num">10</span><h3 class="step__title">Забрать номер навыка и отнести его на хостинг</h3></div>
+    <div class="step__body">
+      <p class="step__text">Сохраните анкету и перейдите на вкладку <strong>Тестирование</strong>. Там будет длинный номер навыка — это <strong>строчка №3</strong>. Скопируйте её.</p>
+      <p class="step__text">Теперь вернитесь на хостинг, в переменные приложения, и вставьте этот номер в <code>ALICE_SKILL_ID</code> — то поле, которое мы оставили пустым. Сохраните, приложение перезапустится само.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 212" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вкладка Тестирование с идентификатором навыка и кнопкой копирования">
+          <defs><marker id="arJ" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="148" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Мой ассистент</text>
+            <text x="34" y="62" font-size="11.5" fill="#bbb">Настройки</text>
+            <rect x="110" y="48" width="110" height="24" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="165" y="64" font-size="11" font-weight="600" fill="#710C04" text-anchor="middle">Тестирование</text>
+            <text x="244" y="62" font-size="11.5" fill="#bbb">Публикация</text>
+            <text x="34" y="100" font-size="11" fill="#999">Идентификатор навыка</text>
+            <rect x="34" y="110" width="470" height="32" fill="#f5f5f5" stroke="#710C04" stroke-width="2"/>
+            <text x="48" y="131" font-size="11.5" fill="#1a1a1a">a1b2c3d4-5e6f-7890-abcd-ef1234567890</text>
+            <rect x="516" y="110" width="138" height="32" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="585" y="131" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Скопировать</text>
+            <line x1="269" y1="178" x2="269" y2="148" stroke="#710C04" stroke-width="1.6" marker-end="url(#arJ)"/>
+            <circle cx="269" cy="190" r="13" fill="#710C04"/>
+            <text x="269" y="195" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+            <text x="292" y="195" font-size="12" fill="#710C04" font-weight="600">строчка №3 — в поле ALICE_SKILL_ID на хостинге</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="11">
+    <div class="step__head"><span class="step__num">11</span><h3 class="step__title">Рассказать ассистенту, кто вы, и опубликовать</h3></div>
+    <div class="step__body">
+      <p class="step__text">ChatGPT в колонке начинает с нуля и про вас ничего не знает — он не видит ваши прежние разговоры в приложении. Поэтому про себя нужно рассказать один раз, текстом. Он лежит ниже, замените то, что в скобках, и вставьте в поле описания навыка.</p>
+      <p class="step__text">После этого вкладка <strong>Публикация</strong> и кнопка <strong>Опубликовать</strong>. Для приватного навыка проверку проходить не нужно, он включается сразу.</p>
+      <figure class="figure">
+        <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вкладка Публикация с кнопкой Опубликовать">
+          <defs><marker id="arK" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
+          <g font-family="Inter, sans-serif">
+            <rect x="12" y="12" width="676" height="126" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Мой ассистент · публикация</text>
+            <text x="34" y="66" font-size="11.5" fill="#999">Доступ: приватный, виден только вам</text>
+            <rect x="34" y="84" width="170" height="34" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="119" y="106" font-size="12" font-weight="600" fill="#710C04" text-anchor="middle">Опубликовать</text>
+            <line x1="119" y1="156" x2="119" y2="124" stroke="#710C04" stroke-width="1.6" marker-end="url(#arK)"/>
+            <circle cx="119" cy="168" r="13" fill="#710C04"/>
+            <text x="119" y="173" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="142" y="173" font-size="12" fill="#710C04" font-weight="600">последняя кнопка во всём гайде</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="part">Часть третья · шаг 12</div>
+  <h2 class="part-title">Проверка, <em>вслух</em></h2>
+
+  <div class="step" data-step="12">
+    <div class="step__head"><span class="step__num">12</span><h3 class="step__title">Позвать его с колонки</h3></div>
+    <div class="step__body">
+      <p class="step__text">Скажите имя для вызова так, как написали его в анкете:</p>
+      <div class="say">
+        <div class="say__label">СКАЖИТЕ КОЛОНКЕ</div>
+        <div class="say__phrase">«Алиса, запусти навык&nbsp;мой&nbsp;ассистент»</div>
+      </div>
+      <p class="step__text">Дальше можно говорить обычными словами. Чтобы выйти — «Алиса, хватит».</p>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
 
   <div class="progress">
-    <span id="pcount">Готово 0 из 5</span>
+    <span id="pcount">Готово 0 из 12</span>
     <span class="progress__bar"><span class="progress__fill" id="pfill"></span></span>
     <button class="progress__reset" id="preset" type="button">сбросить</button>
   </div>
 
-  <figure class="figure">
-    <svg viewBox="0 0 700 186" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Таблица: что копируем и куда вставляем">
-      <g font-family="Inter, sans-serif" font-size="12" fill="#1a1a1a">
-        <text x="16" y="26" font-weight="700" font-size="12.5">ЧТО КОПИРУЕМ</text>
-        <text x="398" y="26" font-weight="700" font-size="12.5">КУДА ВСТАВЛЯЕМ</text>
-
-        <rect x="16" y="40" width="286" height="36" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="29" y="63">Ключ из AI Gateway</text>
-        <rect x="398" y="40" width="286" height="36" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="411" y="63">Поле API_KEY в приложении</text>
-        <line x1="308" y1="58" x2="392" y2="58" stroke="#710C04" stroke-dasharray="4 3"/>
-
-        <rect x="16" y="88" width="286" height="36" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="29" y="111">Адрес приложения с Дашборда</text>
-        <rect x="398" y="88" width="286" height="36" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="411" y="111">Поле Webhook URL у навыка</text>
-        <line x1="308" y1="106" x2="392" y2="106" stroke="#710C04" stroke-dasharray="4 3"/>
-
-        <rect x="16" y="136" width="286" height="36" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="29" y="159">ID навыка со вкладки «Тестирование»</text>
-        <rect x="398" y="136" width="286" height="36" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="411" y="159">Поле ALICE_SKILL_ID в приложении</text>
-        <line x1="308" y1="154" x2="392" y2="154" stroke="#710C04" stroke-dasharray="4 3"/>
-      </g>
-    </svg>
-    <figcaption>Четвёртый шаг целиком.</figcaption>
-  </figure>
+  <div class="carry">
+    <div class="carry__title">Три строчки, и больше ничего</div>
+    <div class="carry__sub">Если запутаетесь в середине — вот вся суть гайда. Остальное просто кнопки «далее».</div>
+    <div class="carry__line"><strong>№1 Ключ</strong> из AI Gateway → в поле <code>API_KEY</code> на хостинге</div>
+    <div class="carry__line"><strong>№2 Адрес приложения</strong> с хостинга → в поле <code>Webhook URL</code> у навыка</div>
+    <div class="carry__line"><strong>№3 Номер навыка</strong> со вкладки «Тестирование» → в поле <code>ALICE_SKILL_ID</code> на хостинге</div>
+  </div>
 
   <div class="prompt-box">
     <div class="prompt-box__title">Инструкция про себя</div>
-    <div class="prompt-box__subtitle">Для пятого шага, замените то, что в скобках</div>
+    <div class="prompt-box__subtitle">Для одиннадцатого шага, замените то, что в скобках</div>
     <p class="prompt-box__text">«Ты мой личный ассистент. Я веду блог про [тема], моя аудитория — [кто это], пишу [тепло, на „вы", с самоиронией]. Отвечай коротко и живой речью, без списков и заголовков, это будет звучать вслух».</p>
   </div>
 
-  <div class="scenario-card__tip"><strong>Если не работает:</strong> «такого навыка нет» — навык не опубликован или вы зовёте его другим именем, посмотрите имя в настройках дословно. «Навык не отвечает» — проверьте адрес в <strong>Webhook URL</strong> и что приложение на хостинге запущено 🤍</div>
+  <div class="part">Если не получилось</div>
+  <h2 class="part-title">Четыре ответа <em>на четыре беды</em></h2>
+
+  <div class="words">
+    <div class="words__row"><span class="words__w">«Такого навыка нет»</span><span class="words__d">навык не опубликован, либо вы зовёте его не тем именем. Откройте анкету и прочитайте «Имя для вызова» буква в букву.</span></div>
+    <div class="words__row"><span class="words__w">«Навык не отвечает»</span><span class="words__d">проверьте адрес в поле Webhook URL и что приложение на хостинге зелёное. Чаще всего там просто потерялось <code>https://</code>.</span></div>
+    <div class="words__row"><span class="words__w">Молчит или мычит</span><span class="words__d">обычно пустой или неправильный <code>API_KEY</code>. Создайте ключ заново и вставьте целиком, без пробелов по краям.</span></div>
+    <div class="words__row"><span class="words__w">Колонка не слышит</span><span class="words__d">почти всегда это чужой аккаунт в седьмом шаге. Загляните в «Дом с Алисой» и сравните логин.</span></div>
+  </div>
+
+  <div class="tip">Если встали на каком-то шаге — напишите мне номер шага и что видите на экране, разберёмся 🤍</div>
 
   <div class="cta">
-    <p class="cta__text">Получилось? Напишите, о чём первом с ней заговорили 🤍</p>
+    <p class="cta__text">Дошли до конца? Напишите, о чём первом с ним заговорили 🤍</p>
     <p class="cta__text cta__sub">Такие разборы я выкладываю у себя в канале — <a class="cta__link" href="https://t.me/maysoulme">@maysoulme</a></p>
   </div>
 
@@ -309,13 +668,18 @@ body {
 
 <script>
 (function () {
-  var KEY = 'ms-alisa-steps-v4';
+  var KEY = 'ms-alisa-steps-v5';
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.check'));
   var total = buttons.length;
   var countEl = document.getElementById('pcount');
   var fillEl = document.getElementById('pfill');
   var resetEl = document.getElementById('preset');
 
+  function stepOf(btn) {
+    var node = btn;
+    while (node && !node.getAttribute('data-step')) { node = node.parentNode; }
+    return node ? node.getAttribute('data-step') : null;
+  }
   function load() {
     try {
       var raw = localStorage.getItem(KEY);
@@ -328,7 +692,7 @@ body {
   function render(state) {
     var done = 0;
     buttons.forEach(function (btn) {
-      var step = btn.parentNode.getAttribute('data-step');
+      var step = stepOf(btn);
       var on = !!state[step];
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       btn.textContent = on ? 'готово ✓' : 'готово';
@@ -343,7 +707,8 @@ body {
 
   buttons.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var step = btn.parentNode.getAttribute('data-step');
+      var step = stepOf(btn);
+      if (!step) { return; }
       state[step] = !state[step];
       save(state);
       render(state);
