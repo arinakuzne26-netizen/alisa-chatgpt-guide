@@ -7,7 +7,7 @@
 <meta name="ms-section" content="life">
 <meta name="ms-tag" content="Гайд">
 <meta name="ms-title" content="Как подключить <i>ChatGPT к Алисе</i>">
-<meta name="ms-desc" content="Чтобы колонка отвечала как человек, а не невпопад. Настраивается минут за пятнадцать.">
+<meta name="ms-desc" content="Чтобы колонка отвечала как персональный помощник. Шесть шагов, минут пятнадцать.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
 <style>
@@ -78,7 +78,7 @@ body {
   background: #f5f5f5; padding: 18px 22px; margin: 20px 0;
   font-size: 16px; line-height: 1.7; color: #444;
 }
-.highlight code, .text code, .step__text code, .carry__line code, .words__d code {
+.highlight code, .text code, .step__text code, .carry__line code, .words__d code, .vars__v code {
   font-family: 'Inter', sans-serif; font-weight: 600; color: #1a1a1a;
   background: #ebebeb; padding: 1px 6px; font-size: 14.5px; word-break: break-all;
 }
@@ -129,6 +129,11 @@ body {
 .check:hover { border-color: #bbb; color: #777; }
 .check[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+.vars { margin: 18px 0 8px; border-top: 1px solid #ebebeb; }
+.vars__row { display: flex; gap: 16px; padding: 11px 0; border-bottom: 1px solid #ebebeb; font-size: 15px; line-height: 1.6; align-items: baseline; }
+.vars__v { min-width: 190px; flex-shrink: 0; }
+.vars__d { color: #555; word-break: break-all; }
+
 .progress {
   background: #f5f5f5; padding: 16px 20px; margin: 24px 0 8px;
   font-size: 14px; color: #555; display: flex; align-items: center; gap: 14px;
@@ -153,7 +158,7 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 19px; font-weight: 700; color: var(--accent); margin-bottom: 4px;
 }
-.prompt-box__subtitle { font-size: 13px; color: #888; margin-bottom: 16px; }
+.prompt-box__subtitle { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.6; }
 .prompt-box__text { font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
 
 .words { margin: 20px 0 8px; }
@@ -181,7 +186,7 @@ body {
   .step__body, .step__foot { padding-left: 0; }
   .step__num { min-width: 28px; font-size: 15px; }
   .prompt-box, .carry { padding: 22px; }
-  .words__row { flex-direction: column; gap: 2px; }
+  .words__row, .vars__row { flex-direction: column; gap: 2px; }
 }
 </style>
 </head>
@@ -196,18 +201,18 @@ body {
   <section class="hero">
     <span class="badge">Инструкция</span>
     <h1>Как подключить <em>ChatGPT к Алисе</em></h1>
-    <p class="hero__desc">Чтобы колонка отвечала как человек, а не что-то невпопад.</p>
+    <p class="hero__desc">Чтобы колонка отвечала как персональный помощник, а не что-то невпопад.</p>
   </section>
 
-  <p class="lead">Девочки, если вас тоже доводит, что Алиса на любой нормальный вопрос отвечает ерунду — к ней можно подключить настоящую нейросеть, и она начнёт отвечать как человек.</p>
-  <p class="lead">Я так планирую весь контент. Мне не надо доставать телефон, открывать приложение, искать нужный чат — я просто говорю вслух, пока мою посуду или собираюсь, и мысль не теряется. Это оказалось самым удобным из всего, что я в этом году настраивала.</p>
-  <p class="text">Вся настройка — минут пятнадцать. Писать код не нужно нигде, вы будете только нажимать кнопки и перенести три строчки из одного окна в другое.</p>
+  <p class="lead">Девочки, если вас тоже доводит, что Алиса на любой нормальный вопрос отвечает ерунду — к ней можно подключить настоящую нейросеть, и она начнёт отвечать как персональный ассистент.</p>
+  <p class="lead">Я так планирую весь контент. Приходит мысль, из которой потом будет пост или reels, и мне не надо доставать телефон, открывать приложение, искать нужный чат — я просто наговариваю её вслух, пока мою посуду или собираюсь. Мысль не теряется, а к вечеру у меня из неё уже готовый текст.</p>
+  <p class="text">Вся настройка — минут пятнадцать. Писать код не нужно нигде, вы будете нажимать кнопки и перенести три строчки из одного окна в другое.</p>
 
-  <div class="highlight"><strong>Про деньги сразу:</strong> это не бесплатно, выходит около 500 ₽ в месяц. Но Алиса за эти деньги превращается в нормального помощника, и я бы тут не экономила. Карта подойдёт обычная российская, VPN не нужен.</div>
+  <div class="highlight"><strong>Про деньги сразу:</strong> это не бесплатно, выходит около 510 ₽ в месяц. Но Алиса за эти деньги превращается в нормального помощника, и я бы тут не экономила. Карта подойдёт обычная российская, VPN не нужен.</div>
 
   <div class="warn"><strong>Самое важное, прочитайте до начала.</strong> Дальше вы будете входить в Яндекс. Войдите <strong>тем же аккаунтом, на котором у вас живёт Алиса.</strong> Посмотреть можно в приложении «Дом с Алисой» — под каким логином вы там, под таким и заходите. С другого аккаунта всё настроится, но колонка вас не услышит, и будет непонятно, что сломалось.</div>
 
-  <p class="text">Соединять Алису с нейросетью будет сторонний сервис — он принимает ваши слова от колонки и передаёт их ChatGPT. Делать в нём ничего не надо, только запустить.</p>
+  <p class="text">Соединять Алису с нейросетью будет сторонний сервис — он принимает ваши слова от колонки и передаёт их нейросети. Делать в нём ничего не надо, только запустить.</p>
 
   <figure class="figure">
     <svg viewBox="0 0 700 118" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: вы говорите колонке, Алиса передаёт вашему навыку, навык сервису, сервис нейросети">
@@ -224,7 +229,7 @@ body {
         <rect x="444" y="26" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
         <text x="500" y="49">Сервис</text><text x="500" y="67" fill="#777">посредник</text>
         <rect x="590" y="26" width="104" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="642" y="49">ChatGPT</text><text x="642" y="67" fill="#777">отвечает</text>
+        <text x="642" y="49">Нейросеть</text><text x="642" y="67" fill="#777">отвечает</text>
         <line x1="122" y1="53" x2="146" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
         <line x1="268" y1="53" x2="292" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
         <line x1="414" y1="53" x2="438" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
@@ -234,51 +239,43 @@ body {
     </svg>
   </figure>
 
-  <div class="highlight"><strong>Приготовьте:</strong> карту и открытый блокнот, хоть бумажный. В блокнот перепишете три строчки — это вся сложность.</div>
-
   <div class="part">Сайт первый · шаги 1–3</div>
   <h2 class="part-title">timeweb.cloud</h2>
 
   <div class="step" data-step="1">
-    <div class="step__head"><span class="step__num">01</span><h3 class="step__title">Зарегистрируйтесь и создайте ключ</h3></div>
+    <div class="step__head"><span class="step__num">01</span><h3 class="step__title">Создайте ключ</h3></div>
     <div class="step__body">
-      <p class="step__text">Заходите на <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a>, регистрируетесь — почта, пароль, письмо.</p>
-      <p class="step__text">Внутри слева нажимаете <strong>ИИ-сервисы</strong>, потом <strong>AI Gateway</strong>. Сверху будут три вкладки, вам нужна <strong>API-ключи</strong>. Нажимаете <strong>Добавить</strong>, пишете любое название, срок действия ставите <strong>без ограничения</strong> и нажимаете <strong>Создать</strong>.</p>
+      <p class="step__text">Регистрируетесь на <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a>, кладёте на счёт около 500 ₽ и нажимаете вот так:</p>
       <figure class="figure">
-        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кабинет Timeweb: слева ИИ-сервисы и AI Gateway, сверху вкладка API-ключи, кнопка Добавить">
+        <svg viewBox="0 0 700 238" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слева ИИ-сервисы и AI Gateway, справа кнопка Создать ключ">
           <defs><marker id="arB" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
           <g font-family="Inter, sans-serif">
-            <rect x="12" y="12" width="676" height="186" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="174" fill="#fff" stroke="#ddd"/>
             <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
             <text x="28" y="32" font-size="11" fill="#777">timeweb.cloud</text>
-            <rect x="12" y="42" width="180" height="156" fill="#fafafa" stroke="#ebebeb"/>
+            <rect x="12" y="42" width="180" height="144" fill="#fafafa" stroke="#ebebeb"/>
             <text x="30" y="68" font-size="11.5" fill="#bbb">Облачные серверы</text>
             <text x="30" y="92" font-size="11.5" fill="#bbb">Базы данных</text>
             <rect x="20" y="102" width="164" height="26" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
             <text x="32" y="120" font-size="11.5" font-weight="600" fill="#710C04">ИИ-сервисы</text>
             <text x="46" y="146" font-size="11.5" fill="#710C04" font-weight="600">AI Gateway</text>
             <text x="46" y="168" font-size="11.5" fill="#bbb">App Platform</text>
-            <text x="216" y="68" font-size="11.5" fill="#bbb">Модели</text>
-            <text x="288" y="68" font-size="11.5" fill="#bbb">Подключение</text>
-            <rect x="378" y="52" width="104" height="24" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="430" y="68" font-size="11" font-weight="600" fill="#710C04" text-anchor="middle">API-ключи</text>
-            <rect x="500" y="100" width="110" height="28" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="555" y="119" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Добавить</text>
-            <line x1="102" y1="216" x2="102" y2="132" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
-            <circle cx="102" cy="228" r="13" fill="#710C04"/>
-            <text x="102" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
-            <text x="125" y="233" font-size="12" fill="#710C04" font-weight="600">по порядку</text>
-            <line x1="430" y1="216" x2="430" y2="82" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
-            <circle cx="430" cy="228" r="13" fill="#710C04"/>
-            <text x="430" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
-            <line x1="555" y1="216" x2="555" y2="134" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
-            <circle cx="555" cy="228" r="13" fill="#710C04"/>
-            <text x="555" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+            <text x="216" y="72" font-size="13" font-weight="700" fill="#1a1a1a">AI Gateway</text>
+            <rect x="216" y="92" width="130" height="30" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="281" y="112" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Создать ключ</text>
+            <line x1="102" y1="204" x2="102" y2="132" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
+            <circle cx="102" cy="216" r="13" fill="#710C04"/>
+            <text x="102" y="221" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <line x1="281" y1="204" x2="281" y2="126" stroke="#710C04" stroke-width="1.6" marker-end="url(#arB)"/>
+            <circle cx="281" cy="216" r="13" fill="#710C04"/>
+            <text x="281" y="221" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+            <text x="304" y="221" font-size="12" fill="#710C04" font-weight="600">название любое, срок — бессрочно</text>
           </g>
         </svg>
       </figure>
-      <p class="step__text">Появится длинная строчка из букв и цифр — копируете её и вставляете в блокнот. Это <strong>строчка №1</strong>.</p>
+      <p class="step__text">Длинную строчку, которая появится, сразу копируете в блокнот. Это <strong>строчка №1</strong>.</p>
       <p class="me">Прямо сразу, не откладывая. Целиком её показывают один раз, потом она прячется, и придётся делать новую.</p>
+      <div class="tip"><strong>И поставьте потолок трат.</strong> Открываете этот же ключ, вкладка «Управление» → «Установить лимиты» → общий лимит токенов. Без него тратить можно сколько угодно, а счёт придёт в конце месяца.</div>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
@@ -286,63 +283,45 @@ body {
   <div class="step" data-step="2">
     <div class="step__head"><span class="step__num">02</span><h3 class="step__title">Запустите сервис</h3></div>
     <div class="step__body">
-      <p class="step__text">Слева нажимаете <strong>App Platform</strong>, потом <strong>Создать</strong>. Выбираете тип <strong>Backend</strong> и <strong>Node.js</strong>.</p>
-      <p class="step__text">Дальше сайт спросит, откуда брать код. Нажимаете <strong>Подключите git-репозиторий по URL</strong> и вставляете в поле вот это:</p>
-      <p class="step__text"><code>https://github.com/ituzov/ituzovlab-alice.git</code></p>
+      <p class="step__text">Слева <strong>App Platform</strong> → <strong>Создать</strong>. Под плитками сервисов есть неприметная ссылка — она вам и нужна:</p>
       <figure class="figure">
-        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Создание приложения: ссылка Подключите git-репозиторий по URL и поле для адреса">
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Экран добавления приложения: под плитками ссылка Подключите git-репозиторий по URL и поле для адреса">
           <defs><marker id="arD" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
           <g font-family="Inter, sans-serif">
             <rect x="12" y="12" width="676" height="186" fill="#fff" stroke="#ddd"/>
             <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
-            <text x="28" y="32" font-size="11" fill="#777">App Platform · создание</text>
-            <text x="34" y="64" font-size="11" fill="#999">Тип</text>
-            <rect x="34" y="72" width="104" height="26" fill="#fafafa" stroke="#e8e8e8"/>
-            <text x="86" y="89" font-size="11" fill="#bbb" text-anchor="middle">Frontend</text>
-            <rect x="146" y="72" width="104" height="26" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="198" y="89" font-size="11" font-weight="600" fill="#710C04" text-anchor="middle">Backend</text>
-            <rect x="258" y="72" width="104" height="26" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="310" y="89" font-size="11" font-weight="600" fill="#710C04" text-anchor="middle">Node.js</text>
-            <text x="34" y="126" font-size="11" fill="#999">Репозиторий</text>
-            <text x="34" y="146" font-size="11.5" font-weight="600" fill="#710C04">Подключите git-репозиторий по URL</text>
-            <rect x="34" y="156" width="620" height="30" fill="#fff" stroke="#710C04" stroke-width="2"/>
-            <text x="48" y="176" font-size="11.5" fill="#555">https://github.com/ituzov/ituzovlab-alice.git</text>
-            <line x1="254" y1="216" x2="254" y2="152" stroke="#710C04" stroke-width="1.6" marker-end="url(#arD)"/>
-            <circle cx="254" cy="228" r="13" fill="#710C04"/>
-            <text x="254" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
-            <text x="222" y="233" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">нажать эту строчку</text>
-            <line x1="500" y1="216" x2="500" y2="192" stroke="#710C04" stroke-width="1.6" marker-end="url(#arD)"/>
+            <text x="28" y="32" font-size="11" fill="#777">Добавить App</text>
+            <rect x="34" y="58" width="190" height="42" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="129" y="84" font-size="11.5" fill="#ccc" text-anchor="middle">GitHub</text>
+            <rect x="240" y="58" width="190" height="42" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="335" y="84" font-size="11.5" fill="#ccc" text-anchor="middle">GitLab</text>
+            <rect x="446" y="58" width="190" height="42" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="541" y="84" font-size="11.5" fill="#ccc" text-anchor="middle">Bitbucket</text>
+            <text x="34" y="128" font-size="12" font-weight="600" fill="#710C04">Подключите git-репозиторий по URL</text>
+            <line x1="34" y1="133" x2="262" y2="133" stroke="#710C04"/>
+            <rect x="34" y="146" width="620" height="30" fill="#fff" stroke="#710C04" stroke-width="2"/>
+            <text x="48" y="166" font-size="11.5" fill="#555">https://github.com/ituzov/ituzovlab-alice.git</text>
+            <line x1="148" y1="216" x2="148" y2="139" stroke="#710C04" stroke-width="1.6" marker-end="url(#arD)"/>
+            <circle cx="148" cy="228" r="13" fill="#710C04"/>
+            <text x="148" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+            <text x="171" y="233" font-size="12" fill="#710C04" font-weight="600">нажать эту строчку</text>
+            <line x1="500" y1="216" x2="500" y2="182" stroke="#710C04" stroke-width="1.6" marker-end="url(#arD)"/>
             <circle cx="500" cy="228" r="13" fill="#710C04"/>
             <text x="500" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
             <text x="523" y="233" font-size="12" fill="#710C04" font-weight="600">вставить адрес</text>
           </g>
         </svg>
-        <figcaption>Адрес лучше скопировать отсюда, а не набирать руками.</figcaption>
+        <figcaption>Логин и пароль не спросят, код лежит открыто. Адрес скопируйте отсюда, а не набирайте руками.</figcaption>
       </figure>
-      <p class="step__text">Тариф берите самый дешёвый. А перед кнопкой <strong>Создать</strong> найдите раздел с переменными и вставьте строчку №1 в поле <code>API_KEY</code>. Второе поле пока не трогайте.</p>
-      <figure class="figure">
-        <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Переменные: в API_KEY вставлен ключ, ALICE_SKILL_ID пустое">
-          <defs><marker id="arE" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
-          <g font-family="Inter, sans-serif">
-            <rect x="12" y="12" width="676" height="156" fill="#fff" stroke="#ddd"/>
-            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
-            <text x="28" y="32" font-size="11" fill="#777">Переменные окружения</text>
-            <rect x="34" y="58" width="190" height="32" fill="#f5f5f5" stroke="#e0e0e0"/>
-            <text x="48" y="79" font-size="11.5" font-weight="600" fill="#1a1a1a">API_KEY</text>
-            <rect x="234" y="58" width="420" height="32" fill="#fff" stroke="#710C04" stroke-width="2"/>
-            <text x="248" y="79" font-size="11.5" fill="#555">sk-tw-a7f31c9e04b8d26 · · · · · · · ·</text>
-            <rect x="34" y="100" width="190" height="32" fill="#f5f5f5" stroke="#e0e0e0"/>
-            <text x="48" y="121" font-size="11.5" font-weight="600" fill="#1a1a1a">ALICE_SKILL_ID</text>
-            <rect x="234" y="100" width="420" height="32" fill="#fff" stroke="#e0e0e0"/>
-            <text x="248" y="121" font-size="11.5" fill="#bbb">пока пусто, вернётесь сюда в шаге 5</text>
-            <line x1="444" y1="186" x2="444" y2="96" stroke="#710C04" stroke-width="1.6" marker-end="url(#arE)"/>
-            <circle cx="444" cy="198" r="13" fill="#710C04"/>
-            <text x="444" y="203" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
-            <text x="412" y="203" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">сюда строчку №1</text>
-          </g>
-        </svg>
-        <figcaption>Если полей не видно — рядом есть кнопка «Добавить переменную». Имя пишется большими буквами, ровно так.</figcaption>
-      </figure>
+      <p class="step__text">Ветку и Express сайт определит сам. Проверьте только, что <strong>Node.js версии 22</strong>, и возьмите первую конфигурацию за 510 ₽.</p>
+      <p class="step__text">Дальше нажимаете <strong>Показать расширенные настройки</strong>. В поле «Путь проверки состояния» пишете <code>/health</code>, а в переменных нажимаете <strong>Добавить</strong> и заводите четыре штуки:</p>
+      <div class="vars">
+        <div class="vars__row"><span class="vars__v"><code>API_KEY</code></span><span class="vars__d">строчка №1 из блокнота</span></div>
+        <div class="vars__row"><span class="vars__v"><code>BASE_URL</code></span><span class="vars__d">https://api.timeweb.ai/v1</span></div>
+        <div class="vars__row"><span class="vars__v"><code>MODEL</code></span><span class="vars__d">xai/grok-4.7</span></div>
+        <div class="vars__row"><span class="vars__v"><code>REASONING_EFFORT</code></span><span class="vars__d">low</span></div>
+      </div>
+      <p class="step__text">Переключатели про сертификаты Минцифры и ТЦИ выключаете, они для госсайтов. Регион берите московский. И <strong>Заказать</strong>.</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
@@ -350,17 +329,19 @@ body {
   <div class="step" data-step="3">
     <div class="step__head"><span class="step__num">03</span><h3 class="step__title">Скопируйте адрес сервиса</h3></div>
     <div class="step__body">
-      <p class="step__text">Нажимаете <strong>Создать</strong> и ждёте, пока кружок станет зелёным. Рядом появится адрес — копируете его в блокнот вместе с <code>https://</code> в начале. Это <strong>строчка №2</strong>.</p>
+      <p class="step__text">Ждёте, пока в логах появится <strong>Deploy succeeded</strong>. После этого на вкладке <strong>Дашборд</strong> будет адрес — копируете его в блокнот вместе с <code>https://</code>. Это <strong>строчка №2</strong>.</p>
       <figure class="figure">
-        <svg viewBox="0 0 700 212" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Страница сервиса со статусом Работает и адресом">
+        <svg viewBox="0 0 700 212" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вкладка Дашборд с адресом сервиса и кнопкой Скопировать">
           <defs><marker id="arF" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
           <g font-family="Inter, sans-serif">
             <rect x="12" y="12" width="676" height="148" fill="#fff" stroke="#ddd"/>
             <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
             <text x="28" y="32" font-size="11" fill="#777">Моё приложение</text>
-            <circle cx="42" cy="68" r="5" fill="#4a7d4a"/>
-            <text x="56" y="72" font-size="12" fill="#4a7d4a" font-weight="600">Работает</text>
-            <text x="34" y="100" font-size="11" fill="#999">Адрес</text>
+            <rect x="30" y="52" width="88" height="24" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="74" y="68" font-size="11" font-weight="600" fill="#710C04" text-anchor="middle">Дашборд</text>
+            <text x="136" y="68" font-size="11" fill="#bbb">Логи</text>
+            <text x="186" y="68" font-size="11" fill="#bbb">Настройки</text>
+            <text x="34" y="100" font-size="11" fill="#999">Домен</text>
             <rect x="34" y="110" width="470" height="34" fill="#f5f5f5" stroke="#710C04" stroke-width="2"/>
             <text x="48" y="132" font-size="12" fill="#1a1a1a">https://my-alice-abc123.twc1.net</text>
             <rect x="516" y="110" width="138" height="34" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
@@ -372,7 +353,8 @@ body {
           </g>
         </svg>
       </figure>
-      <p class="me">Если кружок серый и что-то крутится — просто подождите пару минут. Я в этот момент решила, что всё сломала, а оно собиралось)</p>
+      <p class="step__text">Откройте этот адрес в браузере. Если на белой странице написано <code>ok</code> — всё работает.</p>
+      <p class="me">Если сборка идёт и ничего не происходит — просто подождите пару минут. Я в этот момент решила, что всё сломала, а оно собиралось)</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
@@ -383,107 +365,90 @@ body {
   <div class="step" data-step="4">
     <div class="step__head"><span class="step__num">04</span><h3 class="step__title">Создайте навык</h3></div>
     <div class="step__body">
-      <p class="step__text">Заходите на <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a> — тем самым аккаунтом, про который я писала в начале. Нажимаете <strong>Создать диалог</strong> и выбираете <strong>Навык в Алисе</strong>.</p>
+      <p class="step__text">Заходите на <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a> — тем самым аккаунтом, про который я писала в начале. Нажимаете <strong>Создать навык Алисы</strong> и заполняете карточку:</p>
       <figure class="figure">
-        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кнопка Создать диалог и плитка Навык в Алисе">
-          <defs><marker id="arH" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
-          <g font-family="Inter, sans-serif">
-            <rect x="12" y="12" width="676" height="186" fill="#fff" stroke="#ddd"/>
-            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
-            <text x="28" y="32" font-size="11" fill="#777">dialogs.yandex.ru/developer</text>
-            <rect x="34" y="58" width="150" height="30" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="109" y="78" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Создать диалог</text>
-            <rect x="34" y="108" width="196" height="64" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="132" y="136" font-size="12" font-weight="600" fill="#710C04" text-anchor="middle">Навык в Алисе</text>
-            <text x="132" y="155" font-size="10.5" fill="#999" text-anchor="middle">этот и нужен</text>
-            <rect x="244" y="108" width="196" height="64" fill="#fafafa" stroke="#e8e8e8"/>
-            <text x="342" y="143" font-size="12" fill="#ccc" text-anchor="middle">Умный дом</text>
-            <rect x="454" y="108" width="196" height="64" fill="#fafafa" stroke="#e8e8e8"/>
-            <text x="552" y="143" font-size="12" fill="#ccc" text-anchor="middle">Чат на сайте</text>
-            <line x1="109" y1="216" x2="109" y2="94" stroke="#710C04" stroke-width="1.6" marker-end="url(#arH)"/>
-            <circle cx="109" cy="228" r="13" fill="#710C04"/>
-            <text x="109" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">1</text>
-            <line x1="300" y1="216" x2="190" y2="178" stroke="#710C04" stroke-width="1.6" marker-end="url(#arH)"/>
-            <circle cx="300" cy="228" r="13" fill="#710C04"/>
-            <text x="300" y="233" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
-            <text x="323" y="233" font-size="12" fill="#710C04" font-weight="600">потом эту плитку</text>
-          </g>
-        </svg>
-      </figure>
-      <p class="step__text">Откроется длинная анкета. Полей много, заполняете только четыре:</p>
-      <figure class="figure">
-        <svg viewBox="0 0 700 296" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Анкета навыка: имя навыка, Backend с Webhook URL, тип доступа приватный, кнопка Сохранить">
+        <svg viewBox="0 0 700 296" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Карточка навыка: название, Backend с Webhook URL, тип доступа приватный, иконка, кнопки Сохранить и Отправить на модерацию">
           <defs><marker id="arI" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
           <g font-family="Inter, sans-serif">
             <rect x="12" y="12" width="676" height="232" fill="#fff" stroke="#ddd"/>
             <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
             <text x="28" y="32" font-size="11" fill="#777">Настройки навыка</text>
-            <text x="34" y="62" font-size="11" fill="#999">Имя навыка · им будете звать вслух, два простых слова</text>
+            <text x="34" y="62" font-size="11" fill="#999">Название · два редких слова, им будете звать вслух</text>
             <rect x="34" y="68" width="620" height="28" fill="#fff" stroke="#e0e0e0"/>
-            <text x="46" y="87" font-size="11.5" fill="#555">Мой ассистент</text>
+            <text x="46" y="87" font-size="11.5" fill="#555">мой ассистент</text>
             <text x="34" y="116" font-size="11" fill="#710C04" font-weight="600">Backend · выбрать «Webhook URL» и вставить строчку №2</text>
             <rect x="34" y="122" width="620" height="28" fill="#fff" stroke="#710C04" stroke-width="2"/>
             <text x="46" y="141" font-size="11.5" fill="#555">https://my-alice-abc123.twc1.net</text>
             <text x="34" y="170" font-size="11" fill="#999">Тип доступа</text>
             <rect x="34" y="176" width="130" height="26" fill="#fafafa" stroke="#e8e8e8"/>
-            <text x="99" y="193" font-size="11" fill="#bbb" text-anchor="middle">Публичный</text>
+            <text x="99" y="193" font-size="11" fill="#ccc" text-anchor="middle">Публичный</text>
             <rect x="172" y="176" width="130" height="26" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
             <text x="237" y="193" font-size="11" font-weight="600" fill="#710C04" text-anchor="middle">Приватный</text>
-            <rect x="534" y="208" width="120" height="28" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="594" y="227" font-size="11.5" font-weight="600" fill="#710C04" text-anchor="middle">Сохранить</text>
+            <text x="330" y="193" font-size="11" fill="#999">+ загрузить любую картинку как иконку</text>
+            <rect x="394" y="210" width="110" height="26" fill="#fafafa" stroke="#e8e8e8"/>
+            <text x="449" y="227" font-size="11" fill="#999" text-anchor="middle">Сохранить</text>
+            <rect x="512" y="210" width="142" height="26" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="583" y="227" font-size="10.5" font-weight="600" fill="#710C04" text-anchor="middle">Отправить на модерацию</text>
             <line x1="344" y1="262" x2="344" y2="156" stroke="#710C04" stroke-width="1.6" marker-end="url(#arI)"/>
             <circle cx="344" cy="274" r="13" fill="#710C04"/>
             <text x="344" y="279" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">2</text>
             <text x="367" y="279" font-size="12" fill="#710C04" font-weight="600">обязательно вместе с https://</text>
           </g>
         </svg>
-        <figcaption>Четвёртое поле — «Описание», туда пойдёт текст про вас, он ниже. Остальную анкету для приватного навыка можно не трогать.</figcaption>
+        <figcaption>Название берите пореже и из двух слов, иначе Алиса запустит чужой навык с похожим именем.</figcaption>
       </figure>
+      <p class="step__text">Сохраняете, нажимаете <strong>Отправить на модерацию</strong> и ждёте пару минут. У приватного навыка проверка автоматическая, живой модератор его не смотрит. Когда появится «модерация пройдена» — <strong>Опубликовать</strong>.</p>
       <p class="me">Я вставила адрес без https:// и полчаса думала, что всё зря. Это была единственная настоящая беда за весь вечер)</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
 
   <div class="step" data-step="5">
-    <div class="step__head"><span class="step__num">05</span><h3 class="step__title">Верните номер навыка на Timeweb</h3></div>
+    <div class="step__head"><span class="step__num">05</span><h3 class="step__title">Заберите номер навыка</h3></div>
     <div class="step__body">
-      <p class="step__text">Нажимаете <strong>Сохранить</strong> и смотрите на адресную строку браузера. Там будет длинный номер после слова <code>skills</code> — выделяете его мышкой и копируете. Это <strong>строчка №3</strong>.</p>
+      <p class="step__text">Открываете вкладку <strong>Тестирование</strong> и пишете навыку что угодно. Справа появятся данные запроса, и в них есть строчка <code>skill_id</code> — копируете её значение без кавычек. Это <strong>строчка №3</strong>.</p>
       <figure class="figure">
-        <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Адресная строка браузера, в ней выделен длинный номер навыка после слова skills">
+        <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Вкладка Тестирование: слева диалог, справа данные последнего запроса с выделенной строкой skill_id">
           <defs><marker id="arJ" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#710C04"/></marker></defs>
           <g font-family="Inter, sans-serif">
-            <rect x="12" y="12" width="676" height="104" fill="#fff" stroke="#ddd"/>
-            <rect x="12" y="12" width="676" height="46" fill="#f5f5f5" stroke="#ddd"/>
-            <circle cx="34" cy="35" r="4" fill="#dcdcdc"/><circle cx="48" cy="35" r="4" fill="#dcdcdc"/><circle cx="62" cy="35" r="4" fill="#dcdcdc"/>
-            <rect x="84" y="23" width="580" height="24" fill="#fff" stroke="#e2e2e2"/>
-            <text x="94" y="39" font-size="11" fill="#999">dialogs.yandex.ru/developer/skills/</text>
-            <rect x="302" y="24" width="250" height="22" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
-            <text x="312" y="39" font-size="11" fill="#1a1a1a">a1b2c3d4-5e6f-7890-abcd-ef12</text>
-            <text x="34" y="86" font-size="12" fill="#1a1a1a" font-weight="600">Мой ассистент</text>
-            <text x="34" y="104" font-size="11" fill="#999">Настройки · Тестирование · Публикация</text>
-            <line x1="427" y1="146" x2="427" y2="52" stroke="#710C04" stroke-width="1.6" marker-end="url(#arJ)"/>
-            <circle cx="427" cy="158" r="13" fill="#710C04"/>
-            <text x="427" y="163" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">3</text>
-            <text x="450" y="163" font-size="12" fill="#710C04" font-weight="600">вот этот кусок — строчка №3</text>
+            <rect x="12" y="12" width="676" height="176" fill="#fff" stroke="#ddd"/>
+            <rect x="12" y="12" width="676" height="30" fill="#f5f5f5" stroke="#ddd"/>
+            <text x="28" y="32" font-size="11" fill="#777">Мой ассистент</text>
+            <text x="34" y="62" font-size="11" fill="#bbb">Настройки</text>
+            <rect x="110" y="48" width="106" height="22" fill="#f9f9f9" stroke="#710C04" stroke-width="2"/>
+            <text x="163" y="63" font-size="10.5" font-weight="600" fill="#710C04" text-anchor="middle">Тестирование</text>
+            <rect x="34" y="84" width="300" height="94" fill="#fafafa" stroke="#ebebeb"/>
+            <rect x="46" y="96" width="150" height="22" fill="#fff" stroke="#e8e8e8"/>
+            <text x="56" y="111" font-size="10.5" fill="#999">привет</text>
+            <rect x="172" y="126" width="150" height="22" fill="#fff" stroke="#e8e8e8"/>
+            <text x="182" y="141" font-size="10.5" fill="#999">здравствуйте)</text>
+            <text x="352" y="96" font-size="11" fill="#999">Последний запрос</text>
+            <rect x="352" y="106" width="302" height="72" fill="#fafafa" stroke="#ebebeb"/>
+            <text x="364" y="124" font-size="10" fill="#aaa">"session": {</text>
+            <rect x="372" y="130" width="272" height="20" fill="#fff" stroke="#710C04" stroke-width="2"/>
+            <text x="380" y="144" font-size="10" fill="#1a1a1a">"skill_id": "a1b2c3d4-5e6f-7890-abcd"</text>
+            <text x="364" y="168" font-size="10" fill="#aaa">}</text>
+            <line x1="508" y1="206" x2="508" y2="156" stroke="#710C04" stroke-width="1.6" marker-end="url(#arJ)"/>
+            <circle cx="508" cy="218" r="13" fill="#710C04"/>
+            <text x="508" y="223" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+            <text x="476" y="223" font-size="12" fill="#710C04" font-weight="600" text-anchor="end">вот это — строчка №3,</text>
+            <text x="531" y="223" font-size="12" fill="#710C04" font-weight="600">без кавычек</text>
           </g>
         </svg>
-        <figcaption>Тот же номер лежит на вкладке «Тестирование», если его там видно — берите оттуда.</figcaption>
       </figure>
-      <p class="step__text">Возвращаетесь на timeweb.cloud, открываете своё приложение, находите пустое поле <code>ALICE_SKILL_ID</code> и вставляете туда строчку №3. Сохраняете — сервис перезапустится сам.</p>
+      <p class="step__text">Возвращаетесь на timeweb.cloud, в своё приложение: <strong>Настройки</strong> → <strong>Настройки деплоя</strong> → <strong>Редактировать</strong>. Добавляете пятую переменную <code>ALICE_SKILL_ID</code> со строчкой №3 и нажимаете <strong>Сохранить данные</strong>. Сборка запустится сама.</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
 
   <div class="step" data-step="6">
-    <div class="step__head"><span class="step__num">06</span><h3 class="step__title">Опубликуйте и проверьте</h3></div>
+    <div class="step__head"><span class="step__num">06</span><h3 class="step__title">Позовите</h3></div>
     <div class="step__body">
-      <p class="step__text">Возвращаетесь к навыку и нажимаете <strong>Опубликовать</strong>. Приватный навык проходит автоматическую проверку за пару минут, ждать модератора не нужно.</p>
-      <p class="step__text">И зовёте так, как написали имя в анкете:</p>
       <div class="say">
         <div class="say__label">СКАЖИТЕ КОЛОНКЕ</div>
-        <div class="say__phrase">«Алиса, запусти навык&nbsp;мой&nbsp;ассистент»</div>
+        <div class="say__phrase">«Алиса, запусти&nbsp;мой&nbsp;ассистент»</div>
       </div>
-      <p class="step__text">Дальше говорите обычными словами. Выйти — «Алиса, хватит».</p>
+      <p class="step__text">Дальше говорите обычными словами. Если Алиса ответила «Секунду, думаю» — скажите <strong>«дальше»</strong>, она дочитает ответ. Выйти — <strong>«хватит»</strong>.</p>
       <p class="me">Я первым делом спросила какую-то ерунду, просто чтобы проверить, что он вообще отвечает. А потом стояла посреди кухни ещё минут сорок и забыла, зачем изначально подходила к колонке)</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
@@ -498,26 +463,24 @@ body {
   <div class="carry">
     <div class="carry__title">Три строчки, и больше ничего</div>
     <div class="carry__sub">Если запутались в середине — вот вся суть. Остальное просто «далее».</div>
-    <div class="carry__line"><strong>№1 Ключ</strong> → в поле <code>API_KEY</code> на timeweb</div>
+    <div class="carry__line"><strong>№1 Ключ</strong> → в переменную <code>API_KEY</code> на timeweb</div>
     <div class="carry__line"><strong>№2 Адрес сервиса</strong> → в поле <code>Webhook URL</code> у Яндекса</div>
-    <div class="carry__line"><strong>№3 Номер навыка</strong> → в поле <code>ALICE_SKILL_ID</code> на timeweb</div>
+    <div class="carry__line"><strong>№3 skill_id</strong> → в переменную <code>ALICE_SKILL_ID</code> на timeweb</div>
   </div>
 
   <div class="prompt-box">
-    <div class="prompt-box__title">Расскажите ему, кто вы</div>
-    <div class="prompt-box__subtitle">Вставьте в поле «Описание» у навыка, замените то, что в скобках</div>
+    <div class="prompt-box__title">Чтобы он знал, кто вы</div>
+    <div class="prompt-box__subtitle">Необязательно, но с этим он сразу говорит по-человечески. Заводите на timeweb ещё одну переменную <code>SYSTEM_PROMPT</code> и вставляете туда вот это одной строкой, заменив то, что в скобках</div>
     <p class="prompt-box__text">«Ты мой личный ассистент. Я веду блог про [тема], моя аудитория — [кто это], пишу [тепло, на „вы", с самоиронией]. Отвечай коротко и живой речью, без списков и заголовков, это будет звучать вслух».</p>
   </div>
-
-  <p class="me">Мне сначала было обидно, что он не помнит наши прежние разговоры и каждый раз ЗНАКОМИТСЯ со мной заново. Но одного абзаца про себя хватает, дальше он его держит и не переспрашивает.</p>
 
   <div class="part">Если не получилось</div>
   <h2 class="part-title">Три беды, <em>и что с ними делать</em></h2>
 
   <div class="words">
-    <div class="words__row"><span class="words__w">«Такого навыка нет»</span><span class="words__d">либо не нажата «Опубликовать», либо вы зовёте его не теми словами. Откройте настройки и прочитайте «Имя навыка» буква в букву.</span></div>
-    <div class="words__row"><span class="words__w">«Навык не отвечает»</span><span class="words__d">почти всегда в поле Webhook URL потерялось <code>https://</code>. Ещё проверьте, что кружок у сервиса зелёный.</span></div>
-    <div class="words__row"><span class="words__w">Колонка вас не слышит</span><span class="words__d">вы вошли в Яндекс другим аккаунтом. Загляните в «Дом с Алисой» и сравните логин.</span></div>
+    <div class="words__row"><span class="words__w">«Такого навыка нет»</span><span class="words__d">либо не нажата «Опубликовать», либо вы зовёте его не теми словами. Откройте настройки и прочитайте название буква в букву.</span></div>
+    <div class="words__row"><span class="words__w">Запускается чужой навык</span><span class="words__d">название слишком обычное, Алиса выбрала похожее. Переименуйте во что-то пореже.</span></div>
+    <div class="words__row"><span class="words__w">«Навык не отвечает»</span><span class="words__d">почти всегда в поле Webhook URL потерялось <code>https://</code>. Ещё откройте адрес сервиса в браузере — там должно быть написано <code>ok</code>.</span></div>
   </div>
 
   <div class="tip">Застряли на каком-то шаге — напишите мне номер шага и что видите на экране, разберёмся 🤍</div>
@@ -534,7 +497,7 @@ body {
 
 <script>
 (function () {
-  var KEY = 'ms-alisa-steps-v7';
+  var KEY = 'ms-alisa-steps-v8';
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.check'));
   var total = buttons.length;
   var countEl = document.getElementById('pcount');
