@@ -177,7 +177,8 @@ body {
   <p class="lead">Девочки, если вас тоже доводит, что Алиса на любой нормальный вопрос отвечает ерунду — к ней можно подключить настоящую нейросеть, и она начнёт отвечать как персональный ассистент.</p>
   <p class="lead">Я так планирую весь контент. Приходит мысль, из которой потом будет пост или reels, и мне не надо доставать телефон, открывать приложение, искать нужный чат — я просто наговариваю её вслух, пока мою посуду или собираюсь. Мысль не теряется, а к вечеру у меня из неё уже готовый текст.</p>
 
-  <p class="text">Всё делается на двух сайтах. Вы заводите <strong>ключ</strong>, включаете сервис, забираете его <strong>адрес</strong> — и переносите эти две штуки в Яндекс. Код писать не надо нигде. Нажимать минут двадцать, на картинках обведено, куда.</p>
+  <p class="text">Всё на двух сайтах. На первом берёте <strong>ключ</strong> от нейросети и включаете <strong>сервис</strong> — это маленький посыльный, он будет носить ваши слова от колонки к ChatGPT. На втором показываете его Алисе. Код писать не надо нигде, на картинках обведено, куда нажимать.</p>
+  <p class="text">Пять шагов, нажимать минут двадцать.</p>
 
   <div class="highlight"><strong>Про деньги сразу:</strong> это не бесплатно, выходит около 510 ₽ в месяц. Но Алиса за эти деньги превращается в нормального помощника, и я бы тут не экономила. Карта обычная российская, VPN не нужен. Не понравится — удаляете приложение, и списания прекращаются.</div>
 
@@ -188,13 +189,14 @@ body {
   <div class="step" data-step="1">
     <div class="step__head"><span class="step__num">01</span><h3 class="step__title">Возьмите ключ</h3></div>
     <div class="step__body">
-      <p class="step__text">Регистрируетесь на <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a>, кладёте на счёт 500 ₽.</p>
+      <p class="step__text">Регистрируетесь на <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a>, кладёте на счёт 500 ₽. В меню слева — <strong>ИИ-сервисы</strong>, внутри <strong>AI Gateway</strong>.</p>
+      <p class="me">Timeweb — обычный российский хостинг, я про него до этого тоже ничего не знала. Оплата там как в любом интернет-магазине, своей картой.</p>
 
       <figure class="shot">
         <a href="img/gateway-sozdat-klyuch.webp" target="_blank" rel="noopener">
           <img src="img/gateway-sozdat-klyuch.webp" alt="Панель Timeweb Cloud, раздел ИИ-сервисы, вкладка AI Gateway, кнопка «Создать ключ» обведена" loading="lazy">
         </a>
-        <figcaption>название любое, срок — бессрочный</figcaption>
+        <figcaption>дальше: название любое, срок — бессрочный</figcaption>
       </figure>
 
       <p class="step__text">Появится длинная строчка из букв и цифр. Это и есть <strong>ключ</strong> — копируете его в заметки.</p>
@@ -259,12 +261,20 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
         <figcaption>вставляете всё сразу в поле «Название», панель разложит сама</figcaption>
       </figure>
 
-      <p class="step__text">Потом открываете строку <code>API_KEY</code> и подставляете свой ключ вместо заглушки. <strong>Сохранить</strong>, и внизу справа — <strong>Заказать</strong>.</p>
+      <p class="step__text">Потом открываете строку <code>API_KEY</code> и подставляете свой ключ вместо заглушки. <strong>Сохранить</strong>.</p>
 
       <p class="me">Последняя строчка — это его характер, её можно переписать под себя. Я дописала «я веду блог, пишу тепло и с самоиронией», и он сразу заговорил по-другому. Только не убирайте «звучит вслух», иначе начнёт диктовать колонке звёздочки)</p>
 
+      <p class="step__text">И внизу справа — <strong>Заказать</strong>. Всё, этот экран больше не понадобится.</p>
+    </div>
+    <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
+  </div>
+
+  <div class="step" data-step="3">
+    <div class="step__head"><span class="step__num">03</span><h3 class="step__title">Заберите адрес</h3></div>
+    <div class="step__body">
       <p class="step__text">Пойдёт сборка на несколько минут. Ждёте, пока появится <strong>Deploy succeeded</strong>: это и есть «готово».</p>
-      <p class="me">Если идёт и ничего не происходит — просто подождите. Я в этот момент решила, что всё сломала, а оно собиралось)</p>
+      <p class="me">Если идёт и ничего не происходит — просто подождите, можно пойти налить чаю. Я в этот момент решила, что всё сломала, а оно собиралось)</p>
 
       <figure class="shot">
         <a href="img/app-dashboard.webp" target="_blank" rel="noopener">
@@ -273,13 +283,13 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
         <figcaption>вот он, <strong>адрес</strong> — копируете вместе с <code>https://</code></figcaption>
       </figure>
 
-      <p class="step__text">Откройте этот адрес в браузере. Написано <code>ok</code> — всё живое, идём дальше.</p>
+      <p class="step__text">Откройте этот адрес в браузере. Написано <code>ok</code> — сервис живой, timeweb закончился.</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
 
-  <div class="step" data-step="3">
-    <div class="step__head"><span class="step__num">03</span><h3 class="step__title">Создайте навык</h3></div>
+  <div class="step" data-step="4">
+    <div class="step__head"><span class="step__num">04</span><h3 class="step__title">Создайте навык</h3></div>
     <div class="step__body">
       <p class="step__text">Заходите на <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a> — тем самым аккаунтом. <strong>Навыки в Алисе</strong> → <strong>Создать навык Алисы</strong>.</p>
 
@@ -315,8 +325,8 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
 
-  <div class="step" data-step="4">
-    <div class="step__head"><span class="step__num">04</span><h3 class="step__title">Позовите</h3></div>
+  <div class="step" data-step="5">
+    <div class="step__head"><span class="step__num">05</span><h3 class="step__title">Позовите</h3></div>
     <div class="step__body">
       <div class="say">
         <div class="say__label">СКАЖИТЕ КОЛОНКЕ</div>
@@ -329,7 +339,7 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
   </div>
 
   <div class="progress">
-    <span id="pcount">Готово 0 из 4</span>
+    <span id="pcount">Готово 0 из 5</span>
     <span class="progress__bar"><span class="progress__fill" id="pfill"></span></span>
     <button class="progress__reset" id="preset" type="button">сбросить</button>
   </div>
@@ -348,7 +358,7 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
 
 <script>
 (function () {
-  var KEY = 'ms-alisa-steps-v13';
+  var KEY = 'ms-alisa-steps-v14';
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.check'));
   var total = buttons.length;
   var countEl = document.getElementById('pcount');
