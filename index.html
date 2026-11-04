@@ -7,7 +7,7 @@
 <meta name="ms-section" content="life">
 <meta name="ms-tag" content="Гайд">
 <meta name="ms-title" content="Как подключить <i>ChatGPT к Алисе</i>">
-<meta name="ms-desc" content="Чтобы колонка отвечала как персональный помощник. Четыре шага и две строчки, которые надо перенести.">
+<meta name="ms-desc" content="Чтобы колонка отвечала как персональный помощник. Четыре шага: переносите ключ и адрес из окна в окно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital@1&display=swap" rel="stylesheet">
 <style>
@@ -81,17 +81,13 @@ body {
   margin: 18px 0; font-size: 16px; color: #555; line-height: 1.7; font-style: italic;
 }
 
-.figure { margin: 22px 0 8px; }
-.figure svg { display: block; width: 100%; height: auto; border: 1px solid #e8e8e8; background: #fff; }
-
-.shot { margin: 20px 0 24px; }
+.shot { margin: 18px 0 22px; }
 .shot a { display: block; text-decoration: none; }
 .shot img {
   display: block; width: auto; max-width: 100%; height: auto; margin: 0 auto;
   border: 1px solid #e4e4e4; background: #f5f5f5;
 }
-.shot figcaption { font-size: 14.5px; color: #555; margin-top: 10px; line-height: 1.65; }
-.shot figcaption strong { color: #1a1a1a; font-weight: 600; }
+.shot figcaption { font-size: 14px; color: #999; margin-top: 9px; line-height: 1.6; text-align: center; }
 
 .copy { background: #f5f5f5; padding: 16px 18px; margin: 18px 0; }
 .copy__label { font-size: 11px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 9px; }
@@ -147,9 +143,6 @@ body {
 .cta__sub { font-size: 15px; color: #666; margin-bottom: 0; }
 .cta__link { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(113,12,4,0.3); }
 
-.source { font-size: 14px; color: #999; line-height: 1.7; margin: 32px 0 0; }
-.source a { color: #777; }
-
 .footer {
   text-align: center; padding: 56px 24px;
   border-top: 1px solid #e8e8e8; margin-top: 40px; color: #999; font-size: 14px;
@@ -184,57 +177,28 @@ body {
   <p class="lead">Девочки, если вас тоже доводит, что Алиса на любой нормальный вопрос отвечает ерунду — к ней можно подключить настоящую нейросеть, и она начнёт отвечать как персональный ассистент.</p>
   <p class="lead">Я так планирую весь контент. Приходит мысль, из которой потом будет пост или reels, и мне не надо доставать телефон, открывать приложение, искать нужный чат — я просто наговариваю её вслух, пока мою посуду или собираюсь. Мысль не теряется, а к вечеру у меня из неё уже готовый текст.</p>
 
-  <p class="text">Шагов четыре, и по сути вы просто переносите <strong>две строчки</strong> из одного окна в другое. Код писать не надо нигде, всё остальное — кнопки. На картинках обведено, куда нажимать: нажмите на картинку, и она откроется крупно.</p>
+  <p class="text">Всё делается на двух сайтах. Вы заводите <strong>ключ</strong>, включаете сервис, забираете его <strong>адрес</strong> — и переносите эти две штуки в Яндекс. Код писать не надо нигде. Нажимать минут двадцать, на картинках обведено, куда.</p>
 
-  <div class="highlight"><strong>Про деньги сразу:</strong> это не бесплатно, выходит около 510 ₽ в месяц. Но Алиса за эти деньги превращается в нормального помощника, и я бы тут не экономила. Карта обычная российская, VPN не нужен. Списывают по часам — вечер проб стоит пару рублей, а если не понравится, удаляете приложение, и списания прекращаются.</div>
+  <div class="highlight"><strong>Про деньги сразу:</strong> это не бесплатно, выходит около 510 ₽ в месяц. Но Алиса за эти деньги превращается в нормального помощника, и я бы тут не экономила. Карта обычная российская, VPN не нужен. Не понравится — удаляете приложение, и списания прекращаются.</div>
 
   <div class="warn"><strong>Самое важное, прочитайте до начала.</strong> Дальше вы будете входить в Яндекс. Войдите <strong>тем же аккаунтом, на котором у вас живёт Алиса.</strong> Посмотреть можно в приложении «Дом с Алисой» — под каким логином вы там, под таким и заходите. С другого аккаунта всё настроится, но колонка вас не услышит, и будет непонятно, что сломалось.</div>
-
-  <p class="text">Между Алисой и нейросетью будет стоять сервис-переводчик: он принимает ваши слова от колонки и передаёт их дальше. Он уже готов, вам его надо только включить.</p>
-
-  <figure class="figure">
-    <svg viewBox="0 0 700 118" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема: вы говорите колонке, Алиса передаёт вашему навыку, навык сервису, сервис в ChatGPT">
-      <defs>
-        <marker id="ar0" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#710C04"/></marker>
-      </defs>
-      <g font-family="Inter, sans-serif" font-size="11.5" fill="#1a1a1a" text-anchor="middle">
-        <rect x="6" y="26" width="112" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="62" y="49">Вы говорите</text><text x="62" y="67" fill="#777">колонке</text>
-        <rect x="152" y="26" width="112" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="208" y="49">Алиса</text><text x="208" y="67" fill="#777">слышит</text>
-        <rect x="298" y="26" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="354" y="49">Ваш навык</text><text x="354" y="67" fill="#777">у Яндекса</text>
-        <rect x="444" y="26" width="112" height="54" fill="#f9f9f9" stroke="#710C04"/>
-        <text x="500" y="49">Сервис</text><text x="500" y="67" fill="#777">переводчик</text>
-        <rect x="590" y="26" width="104" height="54" fill="#f5f5f5" stroke="#e0e0e0"/>
-        <text x="642" y="49">ChatGPT</text><text x="642" y="67" fill="#777">отвечает</text>
-        <line x1="122" y1="53" x2="146" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
-        <line x1="268" y1="53" x2="292" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
-        <line x1="414" y1="53" x2="438" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
-        <line x1="560" y1="53" x2="584" y2="53" stroke="#710C04" marker-end="url(#ar0)"/>
-        <text x="350" y="102" font-size="10.5" fill="#999">бордовым — то, что вы настроите. Два сайта, больше ничего</text>
-      </g>
-    </svg>
-  </figure>
-
-  <p class="text">Нажимать — минут двадцать. Ещё дважды придётся подождать, пока машина соберёт и проверит, но это происходит само.</p>
 
   <p class="me">Я откладывала это недели две: казалось, что надо быть программистом. Села вечером с чаем и закончила раньше, чем он остыл. Самым сложным оказалось начать.</p>
 
   <div class="step" data-step="1">
     <div class="step__head"><span class="step__num">01</span><h3 class="step__title">Возьмите ключ</h3></div>
     <div class="step__body">
-      <p class="step__text">Регистрируетесь на <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a> и кладёте на счёт около 500 ₽.</p>
+      <p class="step__text">Регистрируетесь на <a class="link" href="https://timeweb.cloud/">timeweb.cloud</a>, кладёте на счёт 500 ₽.</p>
 
       <figure class="shot">
         <a href="img/gateway-sozdat-klyuch.webp" target="_blank" rel="noopener">
           <img src="img/gateway-sozdat-klyuch.webp" alt="Панель Timeweb Cloud, раздел ИИ-сервисы, вкладка AI Gateway, кнопка «Создать ключ» обведена" loading="lazy">
         </a>
-        <figcaption>Слева <strong>ИИ-сервисы</strong>, внутри <strong>AI Gateway</strong>. Нажимаете <strong>Создать ключ</strong>.</figcaption>
+        <figcaption>название любое, срок — бессрочный</figcaption>
       </figure>
 
-      <p class="step__text">Название придумайте любое, срок оставьте бессрочным. Появится длинная строчка из букв и цифр — копируете её в заметки. Это <strong>строчка №1</strong>.</p>
-      <p class="me">Прямо сразу, не откладывая. Целиком её показывают один раз, потом она прячется, и придётся делать новую.</p>
+      <p class="step__text">Появится длинная строчка из букв и цифр. Это и есть <strong>ключ</strong> — копируете его в заметки.</p>
+      <p class="me">Прямо сразу, не откладывая. Целиком его показывают один раз, потом он прячется, и придётся делать новый.</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
@@ -242,46 +206,45 @@ body {
   <div class="step" data-step="2">
     <div class="step__head"><span class="step__num">02</span><h3 class="step__title">Включите сервис</h3></div>
     <div class="step__body">
-      <p class="step__text">Сервис уже написан, его выложили бесплатно, чтобы любой мог запустить себе. Вам надо только показать Timeweb, где он лежит. Слева <strong>App Platform</strong> → <strong>Создать</strong>.</p>
+      <p class="step__text">Сервис уже написан, его выложили бесплатно. Слева <strong>App Platform</strong> → <strong>Создать</strong>.</p>
 
       <figure class="shot">
         <a href="img/app-po-url.webp" target="_blank" rel="noopener">
-          <img src="img/app-po-url.webp" alt="Экран «Добавить App»: плитки GitHub, GitLab и других, под ними обведена строчка «Подключите git-репозиторий по URL»" loading="lazy">
+          <img src="img/app-po-url.webp" alt="Экран «Добавить App»: плитки провайдеров, под ними обведена строчка «Подключите git-репозиторий по URL»" loading="lazy">
         </a>
-        <figcaption>Плитки пропускаете. Под ними есть неприметная строчка со словом <strong>git</strong> — она и нужна.</figcaption>
+        <figcaption>плитки пропускаете, нужна строчка под ними</figcaption>
       </figure>
 
       <div class="copy">
-        <div class="copy__label">Адрес, который надо вставить</div>
+        <div class="copy__label">Вставить сюда</div>
         <div class="copy__row">
           <p class="copy__code" id="code-repo">https://github.com/ituzov/ituzovlab-alice.git</p>
           <button class="copy__btn" type="button" data-copy="code-repo">копировать</button>
         </div>
       </div>
 
-      <p class="me">Ссылка выглядит страшно, но читать её не надо: нажали «копировать», вставили в поле, и всё. Я до сих пор не знаю, что там внутри)</p>
-
       <figure class="shot">
         <a href="img/app-pole-url.webp" target="_blank" rel="noopener">
           <img src="img/app-pole-url.webp" alt="Окно «Подключите git-репозиторий по URL» с заполненным полем адреса" loading="lazy">
         </a>
-        <figcaption>Вставляете и нажимаете <strong>Подключить</strong>. Логин с паролем не заполняете, их не спросят.</figcaption>
+        <figcaption>логин и пароль не трогаете, их не спросят</figcaption>
       </figure>
 
-      <p class="step__text">Дальше панель заполнит всё сама. Вам надо поменять одно: ниже будет табличка с ценами, и галочка заранее стоит на второй строке, за 810 ₽. <strong>Переставьте её на первую, за 510 ₽</strong> — больше тут не нужно.</p>
-      <p class="step__text">Под табличкой нажмите <strong>Показать расширенные настройки</strong>: без них дальше не пройти.</p>
+      <p class="me">Ссылка выглядит страшно, но читать её не надо: нажали «копировать», вставили, и всё. Я до сих пор не знаю, что там внутри)</p>
+
+      <p class="step__text">Дальше панель заполнит всё сама. Поменять надо одно: в табличке с ценами галочка стоит на второй строке, <strong>переставьте её на первую, за 510 ₽</strong>. Под табличкой — <strong>Показать расширенные настройки</strong>.</p>
 
       <figure class="shot">
         <a href="img/app-peremennye-knopka.webp" target="_blank" rel="noopener">
           <img src="img/app-peremennye-knopka.webp" alt="Расширенные настройки: поле «Путь проверки состояния» со значением /health и кнопка «Добавить» у переменных" loading="lazy">
         </a>
-        <figcaption>В поле <strong>Путь проверки состояния</strong> впишите <code>/health</code> — по нему Timeweb понимает, что сервис жив. Дальше <strong>Добавить</strong> у переменных.</figcaption>
+        <figcaption><code>/health</code> — чтобы Timeweb видел, что сервис жив</figcaption>
       </figure>
 
       <div class="copy">
-        <div class="copy__label">Эти строчки — вставить разом</div>
+        <div class="copy__label">И вот это — целиком, одной вставкой</div>
         <div class="copy__row">
-          <p class="copy__code" id="code-vars">API_KEY=PASTE_KEY_HERE
+          <p class="copy__code" id="code-vars">API_KEY=СЮДА_СВОЙ_КЛЮЧ
 BASE_URL=https://api.timeweb.ai/v1
 MODEL=openai/gpt-4.1-mini
 SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай коротко и живой речью, без списков и заголовков, это будет звучать вслух.</p>
@@ -293,22 +256,24 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
         <a href="img/app-peremennye-forma.webp" target="_blank" rel="noopener">
           <img src="img/app-peremennye-forma.webp" alt="Окно «Добавить переменные» с подсказкой про массовую вставку" loading="lazy">
         </a>
-        <figcaption>Вставляете всё сразу в поле <strong>Название</strong> — панель сама разложит по местам. Потом откройте строку <code>API_KEY</code> и замените <code>PASTE_KEY_HERE</code> на свою строчку №1. И <strong>Сохранить</strong>.</figcaption>
+        <figcaption>вставляете всё сразу в поле «Название», панель разложит сама</figcaption>
       </figure>
 
-      <p class="me">Последняя строчка — это его характер, её можно переписать под себя. Я дописала «я веду блог, пишу тепло и с самоиронией» — и он сразу заговорил по-другому. Только не убирайте «звучит вслух», иначе он начнёт диктовать колонке списки и звёздочки)</p>
+      <p class="step__text">Потом открываете строку <code>API_KEY</code> и подставляете свой ключ вместо заглушки. <strong>Сохранить</strong>, и внизу справа — <strong>Заказать</strong>.</p>
 
-      <p class="step__text">Внизу справа — <strong>Заказать</strong>. Пойдёт сборка, это несколько минут. Ждёте, пока появится <strong>Deploy succeeded</strong>: это и есть «готово».</p>
-      <p class="me">Если сборка идёт и ничего не происходит — просто подождите. Я в этот момент решила, что всё сломала, а оно собиралось)</p>
+      <p class="me">Последняя строчка — это его характер, её можно переписать под себя. Я дописала «я веду блог, пишу тепло и с самоиронией», и он сразу заговорил по-другому. Только не убирайте «звучит вслух», иначе начнёт диктовать колонке звёздочки)</p>
+
+      <p class="step__text">Пойдёт сборка на несколько минут. Ждёте, пока появится <strong>Deploy succeeded</strong>: это и есть «готово».</p>
+      <p class="me">Если идёт и ничего не происходит — просто подождите. Я в этот момент решила, что всё сломала, а оно собиралось)</p>
 
       <figure class="shot">
         <a href="img/app-dashboard.webp" target="_blank" rel="noopener">
-          <img src="img/app-dashboard.webp" alt="Дашборд приложения: карточка с репозиторием и доменом, домен обведён" loading="lazy">
+          <img src="img/app-dashboard.webp" alt="Дашборд приложения, адрес сервиса обведён" loading="lazy">
         </a>
-        <figcaption>Вкладка <strong>Дашборд</strong>, справа в карточке — адрес. Копируете его <strong>вместе с <code>https://</code></strong>. Это <strong>строчка №2</strong>.</figcaption>
+        <figcaption>вот он, <strong>адрес</strong> — копируете вместе с <code>https://</code></figcaption>
       </figure>
 
-      <p class="step__text">Откройте этот адрес в браузере. Если на белой странице написано <code>ok</code> — сервис живой, идём дальше.</p>
+      <p class="step__text">Откройте этот адрес в браузере. Написано <code>ok</code> — всё живое, идём дальше.</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
@@ -316,36 +281,36 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
   <div class="step" data-step="3">
     <div class="step__head"><span class="step__num">03</span><h3 class="step__title">Создайте навык</h3></div>
     <div class="step__body">
-      <p class="step__text">Заходите на <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a> — тем самым аккаунтом, про который я писала в начале. Вкладка <strong>Навыки в Алисе</strong> → <strong>Создать навык Алисы</strong>.</p>
+      <p class="step__text">Заходите на <a class="link" href="https://dialogs.yandex.ru/developer">dialogs.yandex.ru/developer</a> — тем самым аккаунтом. <strong>Навыки в Алисе</strong> → <strong>Создать навык Алисы</strong>.</p>
 
       <figure class="shot">
         <a href="img/dlg-forma-zapolnena.webp" target="_blank" rel="noopener">
           <img src="img/dlg-forma-zapolnena.webp" alt="Заполненная карточка навыка: название, активационные имена, примеры запросов" loading="lazy">
         </a>
-        <figcaption><strong>Название</strong> — это то, чем вы будете звать навык вслух. Описание любое, голос на свой вкус, иконка — любая картинка с телефона.</figcaption>
+        <figcaption>название — им вы будете звать навык вслух</figcaption>
       </figure>
 
       <p class="me">Форма длиннющая и половина полей со звёздочкой. Я заполнила их за минуту наугад — это карточка для каталога, в который ваш навык всё равно не попадёт. Думать есть над чем только в названии: берите два редких слова, иначе колонка запустит чей-то чужой навык с похожим именем. У меня так и было)</p>
 
       <figure class="shot">
         <a href="img/dlg-webhook.webp" target="_blank" rel="noopener">
-          <img src="img/dlg-webhook.webp" alt="Поле Webhook URL с адресом приложения и переключатель типа доступа в положении «Приватный»" loading="lazy">
+          <img src="img/dlg-webhook.webp" alt="Поле Webhook URL с адресом сервиса и переключатель типа доступа в положении «Приватный»" loading="lazy">
         </a>
-        <figcaption>В блоке <strong>Backend</strong> уже выбрано <strong>Webhook URL</strong> — в поле под ним вставляете строчку №2, обязательно вместе с <code>https://</code>. Чуть ниже переключаете тип доступа на <strong>Приватный</strong>.</figcaption>
+        <figcaption>сюда <strong>адрес</strong>, обязательно с <code>https://</code>. ниже — «Приватный»</figcaption>
       </figure>
 
       <p class="me">Я вставила адрес без https:// и полчаса думала, что всё зря. Это была единственная настоящая беда за весь вечер)</p>
 
-      <p class="step__text">Дальше <strong>Сохранить</strong> и <strong>Отправить на модерацию</strong>. У приватного навыка проверка автоматическая, пара минут.</p>
+      <p class="step__text"><strong>Сохранить</strong> → <strong>Отправить на модерацию</strong>. Проверка автоматическая, пара минут.</p>
 
       <figure class="shot">
         <a href="img/dlg-opublikovat.webp" target="_blank" rel="noopener">
           <img src="img/dlg-opublikovat.webp" alt="Шапка навыка с отметкой «модерация пройдена» и кнопкой «Опубликовать»" loading="lazy">
         </a>
-        <figcaption>Появилось «модерация пройдена» — жмёте <strong>Опубликовать</strong>. Без этой кнопки колонка навык не увидит.</figcaption>
+        <figcaption>без этой кнопки колонка навык не увидит</figcaption>
       </figure>
 
-      <p class="me">Вот на этой кнопке у меня ёкнуло. Всё, он есть. Можно идти к колонке)</p>
+      <p class="me">Вот на ней у меня ёкнуло. Всё, он есть. Можно идти к колонке)</p>
     </div>
     <div class="step__foot"><button class="check" type="button" aria-pressed="false">готово</button></div>
   </div>
@@ -372,11 +337,9 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
   <p class="me">А через неделю я поймала себя на том, что иду на кухню не за чаем, а договорить мысль.</p>
 
   <div class="cta">
-    <p class="cta__text">Дошли до конца? Напишите, о чём первом с ним заговорили. Застряли — пишите тоже, скажите номер шага и что у вас на экране 🤍</p>
+    <p class="cta__text">Дошли до конца? Напишите, о чём первом с ним заговорили 🤍</p>
     <p class="cta__text cta__sub">Такие разборы я выкладываю у себя в канале — <a class="cta__link" href="https://t.me/maysoulme">@maysoulme</a></p>
   </div>
-
-  <p class="source">Источник: разбор <a href="https://ituzovlab.ru/materials/alisa-s-normalnym-ii" target="_blank" rel="noopener">«Алиса с нормальным ИИ»</a> на ituzovlab.ru — оттуда сервис-переводчик и экраны панелей.</p>
 
   <div class="footer">
     © 2026 · maysoulme
@@ -385,7 +348,7 @@ SYSTEM_PROMPT=Ты мой личный ассистент. Отвечай кор
 
 <script>
 (function () {
-  var KEY = 'ms-alisa-steps-v12';
+  var KEY = 'ms-alisa-steps-v13';
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.check'));
   var total = buttons.length;
   var countEl = document.getElementById('pcount');
